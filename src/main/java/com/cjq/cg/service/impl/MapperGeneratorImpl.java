@@ -1,0 +1,69 @@
+package com.cjq.cg.service.impl;
+
+import com.cjq.cg.service.base.BaseGenerator;
+import com.google.common.collect.Maps;
+
+import java.util.HashMap;
+
+import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
+import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
+import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
+
+/**
+ * @author cjq
+ * @date 2019-09-17
+ */
+public class MapperGeneratorImpl extends BaseGenerator {
+    @Override
+    protected HashMap<String, String> getTemplateProperties() {
+        HashMap<String, String> map = Maps.newHashMap();
+        map.put("pageList", getPageList());
+        map.put("pageCount", getPageCount());
+        map.put("sqlList", getSqlList());
+        map.put("mapperPackage", getPackageFileName());
+        map.put("voPackage", VO_PACKAGE);
+        return map;
+    }
+
+    @Override
+    protected String getFileName() {
+        return ACTION_NAME + "Mapper";
+    }
+
+    @Override
+    protected String getFileNameSuffix() {
+        return ".xml";
+    }
+
+    @Override
+    protected String getPackageType() {
+        return "sqlmapper";
+    }
+
+    @Override
+    protected String getTemplateName() {
+        return "Mapper.ftl";
+    }
+
+    @Override
+    protected String getModuleSign() {
+        return "service";
+    }
+
+    public static String getPageList() {
+        return "get" + ACTION_NAME + "List";
+    }
+
+    public static String getPageCount() {
+        return "get" + ACTION_NAME + "Count";
+    }
+
+    private String getSqlList() {
+        return "sql" + ACTION_NAME + "List";
+    }
+
+    @Override
+    protected String getPackagePath() {
+        return RESOURCES_PATH + "/" + getPackageName().replace(".", "/");
+    }
+}
