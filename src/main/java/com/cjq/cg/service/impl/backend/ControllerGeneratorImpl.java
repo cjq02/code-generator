@@ -1,4 +1,4 @@
-package com.cjq.cg.service.impl;
+package com.cjq.cg.service.impl.backend;
 
 import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
@@ -8,16 +8,16 @@ import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SUFFIX;
-import static com.cjq.cg.service.impl.JspGeneratorImpl.getRootPath;
-import static com.cjq.cg.service.impl.ServiceGeneratorImpl.getInterfaceName;
-import static com.cjq.cg.service.impl.ServiceIntfGeneratorImpl.getInterfacePath;
-import static com.cjq.cg.service.impl.ServiceIntfGeneratorImpl.getPageMethodName;
+import static com.cjq.cg.service.impl.frontend.JspGeneratorImpl.getRootPath;
+import static com.cjq.cg.service.impl.backend.ServiceGeneratorImpl.getInterfaceName;
+import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getInterfacePath;
+import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
 
 /**
  * @author cjq
  * @date 2019-09-18
  */
-public class ControllerGeneratorImpl extends BaseGenerator {
+public class ControllerGeneratorImpl extends AbstractBackendGenerator {
 
     @Override
     protected HashMap<String, String> getTemplateProperties() {
@@ -29,7 +29,7 @@ public class ControllerGeneratorImpl extends BaseGenerator {
         map.put("rootPath", getRootPath());
         map.put("controllerName", getFileName());
         map.put("getPageMethodName", getPageMethodName());
-        getBackendProperties(map);
+        map.putAll(getBackendProperties());
         return map;
     }
 
@@ -50,7 +50,7 @@ public class ControllerGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getTemplateName() {
-        return "Controller.ftl";
+        return "backend/Controller.ftl";
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ControllerGeneratorImpl extends BaseGenerator {
         return StringUtils.decapitalize(new ServiceGeneratorImpl().getFileName());
     }
 
-    protected static String getWebModulePath() {
+    public static String getWebModulePath() {
         return PACKAGE_SUFFIX.replace(".${type}", "").replace(".", "/");
     }
 }

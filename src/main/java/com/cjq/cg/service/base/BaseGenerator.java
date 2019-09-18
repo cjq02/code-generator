@@ -16,13 +16,10 @@ import static com.cjq.cg.service.base.GeneratorProperty.FILE_DATE;
 import static com.cjq.cg.service.base.GeneratorProperty.FILE_TITLE;
 import static com.cjq.cg.service.base.GeneratorProperty.JAVA_PATH;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_PREFIX;
-import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SIGN;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SUFFIX;
 import static com.cjq.cg.service.base.GeneratorProperty.PROJECT_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.PROJECT_PATH;
 import static com.cjq.cg.service.base.GeneratorProperty.TEMPLATE_PATH;
-import static com.cjq.cg.service.base.GeneratorProperty.VO_NAME;
-import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
 
 /**
  * @author cjq
@@ -30,6 +27,10 @@ import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
 public abstract class BaseGenerator implements IGenerator {
 
     protected static final Logger logger = LoggerFactory.getLogger(BaseGenerator.class);
+
+    static {
+        GeneratorProperty.init();
+    }
 
     @Override
     public void generate() {
@@ -52,10 +53,6 @@ public abstract class BaseGenerator implements IGenerator {
         }
     }
 
-    static {
-        GeneratorProperty.init();
-    }
-
     private HashMap<String, String> getBaseTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
         map.putAll(getTemplateProperties());
@@ -63,15 +60,6 @@ public abstract class BaseGenerator implements IGenerator {
         map.put("author", FILE_AUTHOR);
         map.put("date", FILE_DATE);
         return map;
-    }
-
-    protected void getBackendProperties(HashMap<String, String> map) {
-        map.put("packageName", getPackageName());
-        map.put("packageSign", PACKAGE_SIGN);
-        map.put("packagePrefix", PACKAGE_PREFIX);
-        map.put("condition", VO_NAME);
-        map.put("vo", VO_NAME);
-        map.put("voPackage", VO_PACKAGE);
     }
 
     private String getTemplatePath() {

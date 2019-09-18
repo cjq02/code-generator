@@ -19,7 +19,6 @@ public class GeneratorProperty {
     public static String PACKAGE_PREFIX;
     public static String PACKAGE_SUFFIX;
     public static String PACKAGE_SIGN;
-    public static String VO_NAME;
     public static String FILE_TITLE;
     public static String FILE_AUTHOR;
     public static String FILE_DATE;
@@ -35,7 +34,6 @@ public class GeneratorProperty {
         PACKAGE_SUFFIX = properties.getProperty("package.suffix");
         RESOURCES_PATH = properties.getProperty("resource.path");
         JAVA_PATH = properties.getProperty("java.path");
-        VO_NAME = properties.getProperty("vo.name");
         TEMPLATE_PATH= properties.getProperty("template.file.path");
         FILE_TITLE = properties.getProperty("title");
         FILE_AUTHOR = properties.getProperty("author");

@@ -1,11 +1,11 @@
 package com.cjq.cg.service.director;
 
-import com.cjq.cg.service.impl.ControllerGeneratorImpl;
-import com.cjq.cg.service.impl.JsGeneratorImpl;
-import com.cjq.cg.service.impl.JspGeneratorImpl;
-import com.cjq.cg.service.impl.MapperGeneratorImpl;
-import com.cjq.cg.service.impl.ServiceGeneratorImpl;
-import com.cjq.cg.service.impl.ServiceIntfGeneratorImpl;
+import com.cjq.cg.service.impl.backend.ControllerGeneratorImpl;
+import com.cjq.cg.service.impl.frontend.JsGeneratorImpl;
+import com.cjq.cg.service.impl.frontend.JspGeneratorImpl;
+import com.cjq.cg.service.impl.backend.MapperGeneratorImpl;
+import com.cjq.cg.service.impl.backend.ServiceGeneratorImpl;
+import com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl;
 import com.cjq.cg.service.intf.IGenerator;
 
 import java.util.ArrayList;

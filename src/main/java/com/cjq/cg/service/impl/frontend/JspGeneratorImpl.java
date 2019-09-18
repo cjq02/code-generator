@@ -1,26 +1,24 @@
-package com.cjq.cg.service.impl;
+package com.cjq.cg.service.impl.frontend;
 
 import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
+import com.sun.xml.internal.ws.util.StringUtils;
 
 import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
-import static com.cjq.cg.service.impl.ControllerGeneratorImpl.getWebModulePath;
-import static com.cjq.cg.service.impl.JspGeneratorImpl.getRootPath;
-import static com.cjq.cg.service.impl.ServiceIntfGeneratorImpl.getPageMethodName;
+import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getWebModulePath;
 
 /**
  * @author cjq
  * @date 2019-09-18
  */
-public class JsGeneratorImpl extends BaseGenerator {
+public class JspGeneratorImpl extends BaseGenerator {
     @Override
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
-        map.put("getRootPath", getRootPath());
-        map.put("getPageMethodName", getPageMethodName());
+        map.put("jspPath", getRootPath());
         return map;
     }
 
@@ -31,7 +29,7 @@ public class JsGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getFileNameSuffix() {
-        return ".js";
+        return ".jsp";
     }
 
     @Override
@@ -41,7 +39,7 @@ public class JsGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getTemplateName() {
-        return "js.ftl";
+        return "frontend/jsp.ftl";
     }
 
     @Override
@@ -51,7 +49,10 @@ public class JsGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getPackagePath() {
-        return RESOURCES_PATH + "/static/assets/js/" + getWebModulePath();
+        return RESOURCES_PATH + "/views/" + getWebModulePath();
     }
 
+    public static String getRootPath() {
+        return getWebModulePath() + "/" + StringUtils.decapitalize(ACTION_NAME);
+    }
 }

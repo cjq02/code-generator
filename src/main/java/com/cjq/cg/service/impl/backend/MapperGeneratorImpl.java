@@ -1,4 +1,4 @@
-package com.cjq.cg.service.impl;
+package com.cjq.cg.service.impl.backend;
 
 import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
@@ -42,7 +42,7 @@ public class MapperGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getTemplateName() {
-        return "Mapper.ftl";
+        return "backend/Mapper.ftl";
     }
 
     @Override

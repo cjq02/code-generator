@@ -1,4 +1,4 @@
-package com.cjq.cg.service.impl;
+package com.cjq.cg.service.impl.backend;
 
 import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
@@ -11,7 +11,7 @@ import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
  * @author cjq
  * @date 2019/09/17
  */
-public class ServiceIntfGeneratorImpl extends BaseGenerator {
+public class ServiceIntfGeneratorImpl extends AbstractBackendGenerator {
 
 
     @Override
@@ -19,7 +19,7 @@ public class ServiceIntfGeneratorImpl extends BaseGenerator {
         HashMap<String, String> map = Maps.newHashMap();
         map.put("interfaceName", getFileName());
         map.put("getPageMethodName", getPageMethodName());
-        getBackendProperties(map);
+        map.putAll(getBackendProperties());
         return map;
     }
 
@@ -40,7 +40,7 @@ public class ServiceIntfGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getTemplateName() {
-        return "IService.ftl";
+        return "backend/IService.ftl";
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ServiceIntfGeneratorImpl extends BaseGenerator {
         return new ServiceIntfGeneratorImpl().getPackageFileName();
     }
 
-    protected static String getPageMethodName() {
+    public static String getPageMethodName() {
         return "get" + ACTION_NAME + "Page";
     }
 }
