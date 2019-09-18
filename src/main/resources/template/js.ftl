@@ -2,7 +2,7 @@ var pageObj = pageObj || {};
 require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid", "Underscore"], function () {
 
     var urls = pageObj.urls = {
-        ${getPageMethodName}: App["contextPath"] + "/${webModulePath}/${getPageMethodName}.json"
+        ${getPageMethodName}: App["contextPath"] + "/${getRootPath}/${getPageMethodName}.json"
     };
 
     var dom = pageObj.dom = {

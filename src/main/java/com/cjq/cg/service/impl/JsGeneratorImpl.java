@@ -2,13 +2,13 @@ package com.cjq.cg.service.impl;
 
 import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
-import com.sun.xml.internal.ws.util.StringUtils;
 
 import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
 import static com.cjq.cg.service.impl.ControllerGeneratorImpl.getWebModulePath;
+import static com.cjq.cg.service.impl.JspGeneratorImpl.getRootPath;
 import static com.cjq.cg.service.impl.ServiceIntfGeneratorImpl.getPageMethodName;
 
 /**
@@ -19,7 +19,7 @@ public class JsGeneratorImpl extends BaseGenerator {
     @Override
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
-        map.put("webModulePath", getWebModulePath());
+        map.put("getRootPath", getRootPath());
         map.put("getPageMethodName", getPageMethodName());
         return map;
     }
