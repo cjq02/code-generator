@@ -1,6 +1,5 @@
 package com.cjq.cg.service.impl.backend;
 
-import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
 import com.sun.xml.internal.ws.util.StringUtils;
 
@@ -8,10 +7,10 @@ import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SUFFIX;
-import static com.cjq.cg.service.impl.frontend.JspGeneratorImpl.getRootPath;
 import static com.cjq.cg.service.impl.backend.ServiceGeneratorImpl.getInterfaceName;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getInterfacePath;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
+import static com.cjq.cg.service.impl.frontend.JspGeneratorImpl.getRootPath;
 
 /**
  * @author cjq
@@ -29,7 +28,7 @@ public class ControllerGeneratorImpl extends AbstractBackendGenerator {
         map.put("rootPath", getRootPath());
         map.put("controllerName", getFileName());
         map.put("getPageMethodName", getPageMethodName());
-        map.putAll(getBackendProperties());
+        map.putAll(getBackendCommonProperties());
         return map;
     }
 
@@ -50,7 +49,7 @@ public class ControllerGeneratorImpl extends AbstractBackendGenerator {
 
     @Override
     protected String getTemplateName() {
-        return "backend/Controller.ftl";
+        return TEMPLATE_FOLDER + "Controller.ftl";
     }
 
     @Override

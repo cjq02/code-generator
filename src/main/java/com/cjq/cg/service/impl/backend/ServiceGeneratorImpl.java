@@ -1,6 +1,5 @@
 package com.cjq.cg.service.impl.backend;
 
-import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
 
 import java.util.HashMap;
@@ -25,7 +24,7 @@ public class ServiceGeneratorImpl extends AbstractBackendGenerator {
         map.put("pageCount", getPageCount());
         map.put("mapperPackage", getMapperPackage());
         map.put("getPageMethodName", getPageMethodName());
-        map.putAll(getBackendProperties());
+        map.putAll(getBackendCommonProperties());
         return map;
     }
 
@@ -46,7 +45,7 @@ public class ServiceGeneratorImpl extends AbstractBackendGenerator {
 
     @Override
     protected String getTemplateName() {
-        return "backend/Service.ftl";
+        return TEMPLATE_FOLDER + "Service.ftl";
     }
 
     @Override

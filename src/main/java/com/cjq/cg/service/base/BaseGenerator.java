@@ -4,15 +4,16 @@ import com.cjq.cg.service.intf.IGenerator;
 import com.cjq.cg.utils.FreeMarkerUtils;
 import com.google.common.collect.Maps;
 import freemarker.template.Configuration;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Date;
 import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.FILE_AUTHOR;
-import static com.cjq.cg.service.base.GeneratorProperty.FILE_DATE;
 import static com.cjq.cg.service.base.GeneratorProperty.FILE_TITLE;
 import static com.cjq.cg.service.base.GeneratorProperty.JAVA_PATH;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_PREFIX;
@@ -36,18 +37,18 @@ public abstract class BaseGenerator implements IGenerator {
     public void generate() {
         Configuration cfg = FreeMarkerUtils.getFreemarkerConfiguration(getTemplatePath());
 
-        String pathName = getPathName();
+        String filePath = getFilePath();
 
         HashMap<String, String> data = getBaseTemplateProperties();
         try {
             // 创建 Service 接口
-            File file = new File(pathName);
+            File file = new File(filePath);
             // 查看父级目录是否存在, 不存在则创建
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
             cfg.getTemplate(getTemplateName()).process(data, new FileWriter(file));
-            logger.info(pathName + " 生成成功!");
+            logger.info(filePath + " 生成成功!");
         } catch (Exception e) {
             throw new RuntimeException("生成失败!", e);
         }
@@ -58,15 +59,19 @@ public abstract class BaseGenerator implements IGenerator {
         map.putAll(getTemplateProperties());
         map.put("title", FILE_TITLE);
         map.put("author", FILE_AUTHOR);
-        map.put("date", FILE_DATE);
+        map.put("date", getDate());
         return map;
+    }
+
+    private String getDate() {
+        return DateFormatUtils.format(new Date(), "yyyy/MM/dd");
     }
 
     private String getTemplatePath() {
         return System.getProperty("user.dir") + TEMPLATE_PATH;
     }
 
-    private String getPathName() {
+    private String getFilePath() {
         return PROJECT_PATH + "/" + getModuleName() + getPackagePath() + "/" + getFileName() + getFileNameSuffix();
     }
 

@@ -1,6 +1,5 @@
 package com.cjq.cg.service.impl.backend;
 
-import com.cjq.cg.service.base.BaseGenerator;
 import com.google.common.collect.Maps;
 
 import java.util.HashMap;
@@ -13,7 +12,7 @@ import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
  * @author cjq
  * @date 2019-09-17
  */
-public class MapperGeneratorImpl extends BaseGenerator {
+public class MapperGeneratorImpl extends AbstractBackendGenerator {
     @Override
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
@@ -42,7 +41,7 @@ public class MapperGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getTemplateName() {
-        return "backend/Mapper.ftl";
+        return TEMPLATE_FOLDER + "Mapper.ftl";
     }
 
     @Override

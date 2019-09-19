@@ -15,7 +15,9 @@ import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
  */
 abstract class AbstractBackendGenerator extends BaseGenerator {
 
-    protected HashMap<String, String> getBackendProperties() {
+    protected static final String TEMPLATE_FOLDER = "backend/";
+
+    protected HashMap<String, String> getBackendCommonProperties() {
         HashMap<String, String> map = Maps.newHashMap();
         map.put("packageName", getPackageName());
         map.put("packageSign", PACKAGE_SIGN);
