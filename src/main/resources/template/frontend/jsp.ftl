@@ -2,9 +2,9 @@
 <%@ include file="/views/_include/_jsp_tags.jsp" %>
 <%@ include file="/views/_include/_jsp_variable.jsp" %>
 <c:set var="pageTitle" value="${title}"/>
-<c:set var="pageJs" value="${r"#{staticContextPath}"}/assets/js/${jspPath}.js"/>
+<c:set var="pageJs" value="${r"${staticContextPath}"}/assets/js/${jspPath}.js"/>
 <%@ include file="/views/application/_include_top.jsp" %>
-<link rel="stylesheet" href="${r"#{staticContextPath}"}/assets/css/main.css"/>
+<link rel="stylesheet" href="${r"${staticContextPath}"}/assets/css/main.css"/>
 <body>
 <div class="wrapper">
     <form id="formSearch">
