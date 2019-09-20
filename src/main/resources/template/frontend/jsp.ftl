@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="${r"${staticContextPath}"}/assets/css/main.css"/>
 <body>
 <div class="wrapper">
+    <!--topSearch-->
     <form id="formSearch">
         <div class="top-search">
             <div class="row col-sm-12">
@@ -17,19 +18,18 @@
                             <input type="text" class="inp" id="conditionExample" name="conditionExample" placeholder="请输入">
                         </div>
                     </li>
+                    <li class="col-sm-4">
+                        <a href="javascript:pageObj.search()" class="btn btn-primary">
+                            <i class="iconfont icon-search"></i>查询
+                        </a>
+                        <a href="javascript:pageObj.reset()" class="btn btn-default">
+                            <i class="iconfont icon-rest"></i>重置
+                        </a>
+                    </li>
                 </ul>
-            </div>
-            <div class="box-btn">
-                <a href="javascript:pageObj.search()" class="btn btn-primary">
-                    <i class="iconfont icon-search"></i>查询
-                </a>
-                <a href="javascript:pageObj.reset()" class="btn btn-default">
-                    <i class="iconfont icon-rest"></i>重置
-                </a>
             </div>
         </div>
     </form>
-    <!--topSearch-->
     <!-- 表格 -->
     <div class="main ">
         <div class="con-tab ">

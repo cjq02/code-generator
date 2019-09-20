@@ -1,6 +1,7 @@
 package com.cjq.cg.service.impl.frontend;
 
 import com.cjq.cg.service.base.BaseGenerator;
+import com.cjq.cg.utils.StringUtils;
 import com.google.common.collect.Maps;
 
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class JsGeneratorImpl extends BaseGenerator {
 
     @Override
     protected String getFileName() {
-        return ACTION_NAME;
+        return StringUtils.decapitalize(ACTION_NAME);
     }
 
     @Override

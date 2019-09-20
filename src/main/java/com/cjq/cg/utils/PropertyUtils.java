@@ -1,8 +1,8 @@
 package com.cjq.cg.utils;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 /**
@@ -21,7 +21,7 @@ public class PropertyUtils {
             prop = new Properties();
             InputStream in = PropertyUtils.class.getClassLoader().getResourceAsStream("generatorConfig.properties");
             assert in != null;
-            prop.load(new InputStreamReader(in, "UTF-8"));
+            prop.load(new InputStreamReader(in, StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new RuntimeException("加载配置文件异常!", e);
         }
