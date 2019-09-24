@@ -7,29 +7,31 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid", "Underscore"],
 
     var dom = pageObj.dom = {
         init: function () {
-            return $.extend(this, {
-                grid: $('#grid'),
+            pageObj.dom = $.extend(this, {
+                getGrid: function() {
+                    return $('#grid');
+                },
                 formSearch: $('#formSearch')
-            })
+            });
         }
     };
 
     var plugins = pageObj.plugins = {
         jqGrid: {
             getConfig: function () {
-                return {
+                return $.extend({}, jqGridUtil.pageListConfig, {
                     url: urls.${getPageMethodName},
                     pager: "#pager",
                     colModel: this.getColModel()
-                }
+                });
             },
 
             init: function () {
-                dom.grid.jqGrid(this.getConfig());
+                dom.getGrid().jqGrid(this.getConfig());
             },
 
             search: function (searchData) {
-                dom.grid.jqGrid("setRequestData", {
+                dom.getGrid().jqGrid("setRequestData", {
                     condition: searchData,
                     pageInfo: {
                         currentPage: 1
@@ -39,12 +41,7 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid", "Underscore"],
 
             getColModel: function () {
                 return [
-                    {
-                        name: "id",
-                        label: "主键",
-                        hidden: true,
-                        hidedlg: true
-                    }
+                    {name: "id",label: "主键",hidden: true}
                 ];
             }
         }

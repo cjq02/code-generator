@@ -41,16 +41,14 @@ public abstract class BaseGenerator implements IGenerator {
 
         HashMap<String, String> data = getBaseTemplateProperties();
         try {
-            // 创建 Service 接口
             File file = new File(filePath);
-            // 查看父级目录是否存在, 不存在则创建
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
             cfg.getTemplate(getTemplateName()).process(data, new FileWriter(file));
-            logger.info(filePath + " 生成成功!");
+            logger.info(filePath + " Generated!");
         } catch (Exception e) {
-            throw new RuntimeException("生成失败!", e);
+            throw new RuntimeException("Generate Failed!", e);
         }
     }
 
