@@ -18,10 +18,10 @@ public class GeneratorDirector {
 
     public static void run() {
         List<IGenerator> iGeneratorList = new ArrayList<>();
-        iGeneratorList.add(new MapperGeneratorImpl());
+        /*iGeneratorList.add(new MapperGeneratorImpl());
         iGeneratorList.add(new ServiceIntfGeneratorImpl());
         iGeneratorList.add(new ServiceGeneratorImpl());
-        iGeneratorList.add(new ControllerGeneratorImpl());
+        iGeneratorList.add(new ControllerGeneratorImpl());*/
         iGeneratorList.add(new JspGeneratorImpl());
         iGeneratorList.add(new JsGeneratorImpl());
         iGeneratorList.forEach(IGenerator::generate);

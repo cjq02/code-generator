@@ -7,14 +7,16 @@
 <body>
 <div class="wrapper">
     <!--topSearch-->
-    <form id="formSearch">
+    <form id="formSearch" class="invisible">
         <div class="top-search">
             <div class="row col-sm-12">
                 <ul class="form-grid font6">
                     <li class="col-sm-4">
                         <label class="form-lab" for="conditionExample">查询条件</label>
                         <div class="form-control">
-                            <input type="text" class="inp" id="conditionExample" name="conditionExample" placeholder="请输入">
+                            <div class="select">
+                                <input type="text" id="conditionExample" name="conditionExample" placeholder="请输入">
+                            </div>
                         </div>
                     </li>
                     <li class="col-sm-4">
@@ -29,6 +31,16 @@
             </div>
         </div>
     </form>
+    <div class="top-search">
+        <div class="action">
+            <em class="separ"></em>
+            <a id="btnShowSearch" class="txt-all">
+                <i class="iconfont icon-search"></i>
+                <span>显示查询</span>
+            </a>
+            <em class="separ"></em>
+        </div>
+    </div>
     <!-- 表格 -->
     <div class="main ">
         <div class="con-tab ">

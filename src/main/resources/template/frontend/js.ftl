@@ -7,11 +7,13 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid", "Underscore"],
 
     var dom = pageObj.dom = {
         init: function () {
-            pageObj.dom = $.extend(this, {
+            dom = $.extend(this, {
                 getGrid: function() {
                     return $('#grid');
                 },
-                formSearch: $('#formSearch')
+                grid: $('#grid'),
+                formSearch: $('#formSearch'),
+                btnShowSearch: $('#btnShowSearch')
             });
         }
     };
@@ -61,7 +63,10 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid", "Underscore"],
         },
 
         initListeners: function () {
-
+            this.dom.btnShowSearch.click(function () {
+                dom.formSearch.toggle();
+                $(this).children('span').toggleValue('显示查询', '隐藏查询');
+            });
         },
 
         initPlugins: function () {

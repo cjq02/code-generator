@@ -8,7 +8,7 @@
 		FROM
 			(<include refid="${sqlList}"/>) AS dat
 
-		<if test="page != null" >
+		<if test="page != null and page.pageSize > 0">
 			<![CDATA[ limit ${r"#{page.pageSize}"} offset (${r"#{page.recordStart}"}-1) ]]>
 		</if>
     </select>

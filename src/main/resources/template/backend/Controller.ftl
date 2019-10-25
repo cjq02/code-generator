@@ -24,7 +24,7 @@ public class ${controllerName} extends BaseController {
     @Autowired
     private ${interfaceName} ${interfaceAlias};
 
-    @RequestMapping(value = "/init.htm")
+    @RequestMapping(value = "/page.htm")
     public String init(Model model) {
         return "${rootPath}";
     }
