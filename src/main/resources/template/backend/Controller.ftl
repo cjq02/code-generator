@@ -2,6 +2,7 @@ package ${packageName};
 
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import com.${packageSign}.framework.spring.web.bind.annotation.JsonPathParam;
+import com.${packageSign}.framework.adapter.vo.ResponseResult;
 import ${packagePrefix}.application.web.BaseController;
 import ${interfacePath};
 import ${voPackage};
@@ -25,8 +26,14 @@ public class ${controllerName} extends BaseController {
     private ${interfaceName} ${interfaceAlias};
 
     @RequestMapping(value = "/page.htm")
-    public String init(Model model) {
+    public String page() {
         return "${rootPath}";
+    }
+
+    @RequestMapping(value = "/form.htm")
+    public String form(Model model, String id) {
+        model.addAttribute("id", id);
+        return "${rootPath}Form";
     }
 
     /**
@@ -41,5 +48,41 @@ public class ${controllerName} extends BaseController {
     public Page ${getPageMethodName}(@JsonPathParam("$.pageInfo") Page page, @JsonPathParam("$.condition") ${condition} condition) {
         return ${interfaceAlias}.${getPageMethodName}(page, condition);
     }
+
+    <#if hasForm == '1'>
+    /**
+     * 保存
+     *
+     * @param vo 实体
+     * @return 响应结果
+     */
+    @RequestMapping(value = "/save.json")
+    @ResponseBody
+    public ResponseResult save(@JsonPathParam("$.vo") ${vo} vo) {
+        try {
+            ${interfaceAlias}.save(vo, getCurrentUser());
+            return new ResponseResult("保存成功");
+        } catch (Exception ex) {
+            return new ResponseResult(false, null, "保存失败！");
+        }
+    }
+
+    /**
+     * 删除
+     *
+     * @param id 主键
+     * @return 响应结果
+     */
+    @RequestMapping(value = "/delete.json")
+    @ResponseBody
+    public ResponseResult delete(String id) {
+        try {
+            ${interfaceAlias}.delete(id);
+            return new ResponseResult("删除成功");
+        } catch (Exception ex) {
+            return new ResponseResult(false, null, "删除失败！");
+        }
+    }
+    </#if>
 
 }

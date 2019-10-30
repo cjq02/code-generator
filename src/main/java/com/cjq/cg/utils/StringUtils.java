@@ -1,5 +1,8 @@
 package com.cjq.cg.utils;
 
+/**
+ * @author cjq
+ */
 public class StringUtils extends org.apache.commons.lang.StringUtils {
 
     public static String decapitalize(String name) {

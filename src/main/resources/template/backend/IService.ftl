@@ -2,6 +2,9 @@ package ${packageName};
 
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import ${voPackage};
+<#if hasForm =='1'>
+import ${packagePrefix}.sys.vo.UserVOExt;
+</#if>
 
 /**
  * ${title} 接口
@@ -19,4 +22,22 @@ public interface ${interfaceName} {
      * @return 列表
      */
     Page ${getPageMethodName}(Page page, ${condition} condition);
+
+    <#if hasForm =='1'>
+     /**
+     * 保存
+     *
+     * @param vo 实体
+     * @param userVOExt 用户
+     */
+    void save(${vo} vo, UserVOExt userVOExt);
+
+     /**
+     * 删除
+     *
+     * @param id 主键
+     */
+    void delete(String id);
+    </#if>
+
 }

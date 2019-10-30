@@ -9,14 +9,14 @@ import java.util.HashMap;
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
 import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getWebModulePath;
-import static com.cjq.cg.service.impl.frontend.JspGeneratorImpl.getRootPath;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
+import static com.cjq.cg.service.impl.frontend.AbstractJspGeneratorImpl.getRootPath;
 
 /**
  * @author cjq
  * @date 2019-09-18
  */
-public class JsGeneratorImpl extends BaseGenerator {
+public abstract class AbstractJsGeneratorImpl extends BaseGenerator {
     @Override
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
@@ -38,11 +38,6 @@ public class JsGeneratorImpl extends BaseGenerator {
     @Override
     protected String getPackageType() {
         return null;
-    }
-
-    @Override
-    protected String getTemplateName() {
-        return "frontend/js.ftl";
     }
 
     @Override

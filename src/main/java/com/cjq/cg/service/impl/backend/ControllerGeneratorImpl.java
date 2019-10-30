@@ -10,7 +10,7 @@ import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SUFFIX;
 import static com.cjq.cg.service.impl.backend.ServiceGeneratorImpl.getInterfaceName;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getInterfacePath;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
-import static com.cjq.cg.service.impl.frontend.JspGeneratorImpl.getRootPath;
+import static com.cjq.cg.service.impl.frontend.AbstractJspGeneratorImpl.getRootPath;
 
 /**
  * @author cjq

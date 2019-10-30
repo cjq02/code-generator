@@ -7,6 +7,7 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
+import static com.cjq.cg.service.base.GeneratorProperty.HAS_FORM;
 import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
 import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getWebModulePath;
 
@@ -14,7 +15,7 @@ import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getWebModu
  * @author cjq
  * @date 2019-09-18
  */
-public class JspGeneratorImpl extends BaseGenerator {
+public abstract class AbstractJspGeneratorImpl extends BaseGenerator {
     @Override
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
@@ -35,11 +36,6 @@ public class JspGeneratorImpl extends BaseGenerator {
     @Override
     protected String getPackageType() {
         return null;
-    }
-
-    @Override
-    protected String getTemplateName() {
-        return "frontend/jsp.ftl";
     }
 
     @Override

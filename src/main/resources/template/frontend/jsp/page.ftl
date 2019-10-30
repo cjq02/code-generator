@@ -32,6 +32,16 @@
         </div>
     </form>
     <div class="top-search">
+    <#if hasForm == '1'>
+        <div class="action fl">
+            <em class="separ"></em>
+            <a id="btnShowSearch" class="txt-all">
+                <i class="iconfont icon-search"></i>
+                <span>新增</span>
+            </a>
+            <em class="separ"></em>
+        </div>
+    </#if>
         <div class="action">
             <em class="separ"></em>
             <a id="btnShowSearch" class="txt-all">

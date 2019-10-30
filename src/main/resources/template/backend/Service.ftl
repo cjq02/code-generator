@@ -4,6 +4,14 @@ import com.google.common.collect.Maps;
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import com.${packageSign}.framework.mybatis.service.impl.BaseServiceImpl;
 import ${voPackage};
+<#if hasForm == '1'>
+import ${entityPackage};
+import ${packagePrefix}.sys.vo.UserVOExt;
+import com.${packageSign}.framework.base.utils.BeanUtils;
+import com.${packageSign}.framework.base.utils.StringUtils;
+import com.${packageSign}.framework.base.utils.UUIDUtils;
+import ${packagePrefix}.util.DateUtils;
+</#if>
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,4 +41,28 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
         page.setRecords(list);
         return page;
     }
+
+    <#if hasForm == '1'>
+    @Override
+    public void save(${vo} vo, UserVOExt userVOExt) {
+        if (StringUtils.isEmpty(vo.getId())) {
+            vo.setId(UUIDUtils.getStringValue());
+            vo.setCreateUserId(userVOExt.getId());
+            vo.setCreateTs(DateUtils.getCurrentTime());
+            /*vo.setCorpId(userVOExt.getCorpId());*/
+            this.insert(BeanUtils.copyToNewBean(vo, ${entity}.class));
+        } else {
+            vo.setUpdateTs(DateUtils.getCurrentTime());
+            vo.setUpdateUserId(userVOExt.getId());
+            this.update(BeanUtils.copyToNewBean(vo, ${entity}.class));
+        }
+    }
+
+    @Override
+    public void delete(String id) {
+        ${entity} entity = new ${entity}();
+        entity.setId(id);
+        delete(entity);
+    }
+    </#if>
 }

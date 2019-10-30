@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.FILE_AUTHOR;
 import static com.cjq.cg.service.base.GeneratorProperty.FILE_TITLE;
+import static com.cjq.cg.service.base.GeneratorProperty.HAS_FORM;
 import static com.cjq.cg.service.base.GeneratorProperty.JAVA_PATH;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_PREFIX;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SUFFIX;
@@ -58,6 +59,7 @@ public abstract class BaseGenerator implements IGenerator {
         map.put("title", FILE_TITLE);
         map.put("author", FILE_AUTHOR);
         map.put("date", getDate());
+        map.put("hasForm", HAS_FORM);
         return map;
     }
 

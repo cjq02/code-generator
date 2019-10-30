@@ -21,6 +21,7 @@ public class MapperGeneratorImpl extends AbstractBackendGenerator {
         map.put("sqlList", getSqlList());
         map.put("mapperPackage", getPackageFileName());
         map.put("voPackage", VO_PACKAGE);
+        map.put("entityPackage", VO_PACKAGE);
         return map;
     }
 
