@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.util.Date;
 import java.util.HashMap;
 
+import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.FILE_AUTHOR;
 import static com.cjq.cg.service.base.GeneratorProperty.FILE_TITLE;
 import static com.cjq.cg.service.base.GeneratorProperty.HAS_FORM;
@@ -60,6 +61,7 @@ public abstract class BaseGenerator implements IGenerator {
         map.put("author", FILE_AUTHOR);
         map.put("date", getDate());
         map.put("hasForm", HAS_FORM);
+        map.put("actionName", ACTION_NAME);
         return map;
     }
 

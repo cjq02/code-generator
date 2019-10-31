@@ -10,6 +10,7 @@ import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SUFFIX;
 import static com.cjq.cg.service.impl.backend.ServiceGeneratorImpl.getInterfaceName;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getInterfacePath;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
+import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getVoById;
 import static com.cjq.cg.service.impl.frontend.AbstractJspGeneratorImpl.getRootPath;
 
 /**
@@ -27,7 +28,6 @@ public class ControllerGeneratorImpl extends AbstractBackendGenerator {
         map.put("webModulePath", getWebModulePath());
         map.put("rootPath", getRootPath());
         map.put("controllerName", getFileName());
-        map.put("getPageMethodName", getPageMethodName());
         map.putAll(getBackendCommonProperties());
         return map;
     }

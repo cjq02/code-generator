@@ -9,6 +9,8 @@ import static com.cjq.cg.service.base.GeneratorProperty.ENTITY_PACKAGE;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_PREFIX;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SIGN;
 import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
+import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
+import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getVoById;
 
 /**
  * @author cjq
@@ -28,6 +30,9 @@ abstract class AbstractBackendGenerator extends BaseGenerator {
         map.put("voPackage", VO_PACKAGE);
         map.put("entity", getEntityName());
         map.put("entityPackage", ENTITY_PACKAGE);
+        map.put("getPageMethodName", getPageMethodName());
+        map.put("getVoById", getVoById());
+
         return map;
     }
 

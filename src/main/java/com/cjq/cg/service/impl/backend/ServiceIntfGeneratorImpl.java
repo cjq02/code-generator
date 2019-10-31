@@ -17,7 +17,6 @@ public class ServiceIntfGeneratorImpl extends AbstractBackendGenerator {
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
         map.put("interfaceName", getFileName());
-        map.put("getPageMethodName", getPageMethodName());
         map.putAll(getBackendCommonProperties());
         return map;
     }
@@ -53,5 +52,9 @@ public class ServiceIntfGeneratorImpl extends AbstractBackendGenerator {
 
     public static String getPageMethodName() {
         return "get" + ACTION_NAME + "Page";
+    }
+
+    public static String getVoById() {
+        return "get" + ACTION_NAME + "ById";
     }
 }

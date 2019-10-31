@@ -30,11 +30,13 @@ public class ${controllerName} extends BaseController {
         return "${rootPath}";
     }
 
+    <#if hasForm == '1'>
     @RequestMapping(value = "/form.htm")
     public String form(Model model, String id) {
         model.addAttribute("id", id);
         return "${rootPath}Form";
     }
+    </#if>
 
     /**
      * 列表
@@ -50,6 +52,22 @@ public class ${controllerName} extends BaseController {
     }
 
     <#if hasForm == '1'>
+    /**
+     * 根据ID获取记录
+     *
+     * @param id 主键
+     * @return 响应结果
+     */
+    @RequestMapping(value = "/${getVoById}.json")
+    @ResponseBody
+    public ResponseResult ${getVoById}(String id) {
+        try {
+            return new ResponseResult(${interfaceAlias}.${getVoById}(id));
+        } catch (Exception ex) {
+            return new ResponseResult(false, null, "获取数据失败！");
+        }
+    }
+
     /**
      * 保存
      *

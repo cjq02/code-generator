@@ -7,6 +7,8 @@
 			*
 		FROM
 			(<include refid="${sqlList}"/>) AS dat
+		ORDER BY
+			dat.create_ts DESC
 
 		<if test="page != null and page.pageSize > 0">
 			<![CDATA[ limit ${r"#{page.pageSize}"} offset (${r"#{page.recordStart}"}-1) ]]>
@@ -21,8 +23,27 @@
 		) AS dat
     </select>
 
-    <sql id="${sqlList}">
+	<#if hasForm == '1'>
+	<select id="${getVoById}" parameterType="java.util.Map" resultType="${voPackage}">
+        SELECT
+			*
+		FROM
+			(<include refid="${sqlList}"/>) AS dat
+		WHERE
+			dat.id = ${r"#{condition.id}"}
+    </select>
+	</#if>
 
+    <sql id="${sqlList}">
+		SELECT
+			*
+		FROM
+			t_jj_table_name t
+		WHERE 1=1
+
+		<if test="condition.field != null and condition.field != ''">
+			AND t.field LIKE CONCAT('%', ${r"#{condition.field}"}, '%')
+		</if>
     </sql>
 
 </mapper>

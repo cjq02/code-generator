@@ -24,13 +24,21 @@ public interface ${interfaceName} {
     Page ${getPageMethodName}(Page page, ${condition} condition);
 
     <#if hasForm =='1'>
+    /**
+     * 根据ID获取实体
+     *
+     * @param id 主键
+     * @return 实体
+     */
+    ${vo} ${getVoById}(String id);
+
      /**
      * 保存
      *
      * @param vo 实体
      * @param userVOExt 用户
      */
-    void save(${vo} vo, UserVOExt userVOExt);
+    void save(${vo} vo, UserVOExt user);
 
      /**
      * 删除

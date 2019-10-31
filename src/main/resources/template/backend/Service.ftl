@@ -44,16 +44,25 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
 
     <#if hasForm == '1'>
     @Override
-    public void save(${vo} vo, UserVOExt userVOExt) {
+    public AnnounceVOExt ${getVoById}(String id) {
+        Map<String, Object> params = Maps.newHashMap();
+        ${condition} condition = new ${condition}();
+        condition.setId(id);
+        params.put("condition", condition);
+        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${getVoById}", params);
+    }
+
+    @Override
+    public void save(${vo} vo, UserVOExt user) {
         if (StringUtils.isEmpty(vo.getId())) {
             vo.setId(UUIDUtils.getStringValue());
-            vo.setCreateUserId(userVOExt.getId());
+            vo.setCreateUserId(user.getId());
             vo.setCreateTs(DateUtils.getCurrentTime());
             /*vo.setCorpId(userVOExt.getCorpId());*/
             this.insert(BeanUtils.copyToNewBean(vo, ${entity}.class));
         } else {
             vo.setUpdateTs(DateUtils.getCurrentTime());
-            vo.setUpdateUserId(userVOExt.getId());
+            vo.setUpdateUserId(user.getId());
             this.update(BeanUtils.copyToNewBean(vo, ${entity}.class));
         }
     }

@@ -8,6 +8,7 @@ import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.impl.backend.MapperGeneratorImpl.getPageCount;
 import static com.cjq.cg.service.impl.backend.MapperGeneratorImpl.getPageList;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
+import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getVoById;
 
 /**
  * @author cjq
@@ -23,7 +24,6 @@ public class ServiceGeneratorImpl extends AbstractBackendGenerator {
         map.put("pageList", getPageList());
         map.put("pageCount", getPageCount());
         map.put("mapperPackage", getMapperPackage());
-        map.put("getPageMethodName", getPageMethodName());
         map.putAll(getBackendCommonProperties());
         return map;
     }

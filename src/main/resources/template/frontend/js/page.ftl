@@ -1,5 +1,5 @@
 var pageObj = pageObj || {};
-require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid"], function () {
+require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips", "jqGrid", "artDialog"], function () {
 
     var urls = pageObj.urls = {
         ${getPageMethodName}: App["contextPath"] + "/${getRootPath}/${getPageMethodName}.json",
@@ -17,6 +17,9 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid"], function () {
                 },
                 grid: $('#grid'),
                 formSearch: $('#formSearch'),
+                <#if hasForm == '1'>
+                btnAdd: $('#btnAdd'),
+                </#if>
                 btnShowSearch: $('#btnShowSearch')
             });
         }
@@ -68,15 +71,13 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid"], function () {
         dialog: {
             addEdit: {
                 open: function (id) {
-                    require(['artDialog'], function () {
-                        pageObj.addEditDialog = dialog({
-                            url: urls.addEditForm + id,
-                            title: '新增/编辑${title}',
-                            quickClose: false,
-                            height: 250
-                        });
-                        pageObj.addEditDialog.showModal();
+                    pageObj.addEditDialog = dialog({
+                        url: urls.addEditForm + id,
+                        title: '新增/编辑${title}',
+                        quickClose: false,
+                        height: 250
                     });
+                    pageObj.addEditDialog.showModal();
                 },
 
                 close: function (response) {
@@ -144,6 +145,18 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "jqGrid"], function () {
 
         edit: function (id) {
             this.plugins.dialog.addEdit.open(id);
+        },
+
+        delete: function (id) {
+            artDialogUtil.confirm("确定删除吗？", _.bind(function () {
+                ajaxUtil.ajaxWithBlock(ajaxUtil.getAjaxSetting(urls.delete, {id: id}),
+                    _.bind(function (response) {
+                        TipsUtil.show(response.success, response.message);
+                        if (response.success) {
+                            this.search();
+                        }
+                    }, this));
+            }, this));
         },
         </#if>
 

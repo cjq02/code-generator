@@ -35,7 +35,7 @@
     <#if hasForm == '1'>
         <div class="action fl">
             <em class="separ"></em>
-            <a id="btnShowSearch" class="txt-all">
+            <a id="btnAdd" class="txt-all" onclick="pageObj.add()">
                 <i class="iconfont icon-search"></i>
                 <span>新增</span>
             </a>

@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
+import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getVoById;
 
 /**
  * @author cjq
@@ -17,7 +18,7 @@ public class JsFormGeneratorImpl extends AbstractJsGeneratorImpl {
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
         map.putAll(super.getTemplateProperties());
-
+        map.put("getVoById", getVoById());
         return map;
     }
 
