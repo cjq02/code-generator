@@ -41,8 +41,8 @@
 			t_jj_table_name t
 		WHERE 1=1
 
-		<if test="condition.field != null and condition.field != ''">
-			AND t.field LIKE CONCAT('%', ${r"#{condition.field}"}, '%')
+		<if test="condition.id != null and condition.id != ''">
+			AND t.id LIKE CONCAT('%', ${r"#{condition.id}"}, '%')
 		</if>
     </sql>
 

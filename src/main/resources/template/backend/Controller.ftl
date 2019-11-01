@@ -63,7 +63,7 @@ public class ${controllerName} extends BaseController {
     public ResponseResult ${getVoById}(String id) {
         try {
             return new ResponseResult(${interfaceAlias}.${getVoById}(id));
-        } catch (Exception ex) {
+        } catch (BusinessException ex) {
             return new ResponseResult(false, null, "获取数据失败！");
         }
     }
@@ -78,9 +78,8 @@ public class ${controllerName} extends BaseController {
     @ResponseBody
     public ResponseResult save(@JsonPathParam("$.vo") ${vo} vo) {
         try {
-            ${interfaceAlias}.save(vo, getCurrentUser());
-            return new ResponseResult("保存成功");
-        } catch (Exception ex) {
+            return new ResponseResult("保存成功", ${interfaceAlias}.save(vo, getCurrentUser()));
+        } catch (BusinessException ex) {
             return new ResponseResult(false, null, "保存失败！");
         }
     }
@@ -97,7 +96,7 @@ public class ${controllerName} extends BaseController {
         try {
             ${interfaceAlias}.delete(id);
             return new ResponseResult("删除成功");
-        } catch (Exception ex) {
+        } catch (BusinessException ex) {
             return new ResponseResult(false, null, "删除失败！");
         }
     }

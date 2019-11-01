@@ -36,9 +36,10 @@ public interface ${interfaceName} {
      * 保存
      *
      * @param vo 实体
-     * @param userVOExt 用户
+     * @param user 用户
+     * @return 实体
      */
-    void save(${vo} vo, UserVOExt user);
+    ${vo} save(${vo} vo, UserVOExt user);
 
      /**
      * 删除

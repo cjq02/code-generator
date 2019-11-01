@@ -44,7 +44,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
 
     <#if hasForm == '1'>
     @Override
-    public AnnounceVOExt ${getVoById}(String id) {
+    public ${vo} ${getVoById}(String id) {
         Map<String, Object> params = Maps.newHashMap();
         ${condition} condition = new ${condition}();
         condition.setId(id);
@@ -53,18 +53,18 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
     }
 
     @Override
-    public void save(${vo} vo, UserVOExt user) {
+    public ${vo} save(${vo} vo, UserVOExt user) {
+        ${entity} entity = BeanUtils.copyToNewBean(vo, ${entity}.class);
         if (StringUtils.isEmpty(vo.getId())) {
-            vo.setId(UUIDUtils.getStringValue());
-            vo.setCreateUserId(user.getId());
-            vo.setCreateTs(DateUtils.getCurrentTime());
-            /*vo.setCorpId(userVOExt.getCorpId());*/
-            this.insert(BeanUtils.copyToNewBean(vo, ${entity}.class));
+            entity.setId(null);
+            entity.setCreateUserId(user.getId());
+            entity.setCreateTs(DateUtils.getCurrentTime());
+            /*entity.setCorpId(user.getCorpId());*/
         } else {
-            vo.setUpdateTs(DateUtils.getCurrentTime());
-            vo.setUpdateUserId(user.getId());
-            this.update(BeanUtils.copyToNewBean(vo, ${entity}.class));
+            entity.setUpdateTs(DateUtils.getCurrentTime());
+            entity.setUpdateUserId(user.getId());
         }
+        return BeanUtils.copyToNewBean(this.saveWithQuery(entity), ${vo}.class);
     }
 
     @Override

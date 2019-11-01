@@ -3,7 +3,7 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips"], function () {
 
     var urls = pageObj.urls = {
         save: App["contextPath"] + "/${getRootPath}/save.json",
-        getAnnounceById: App["contextPath"] + "/${getRootPath}/${getVoById}.json"
+        ${getVoById}: App["contextPath"] + "/${getRootPath}/${getVoById}.json"
     };
 
     var dom = pageObj.dom = {
@@ -58,7 +58,9 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips"], function () {
         },
 
         getSaveData: function () {
-            return this.getForm().jqForm('getValue');
+            return {
+                vo: this.getForm().jqForm('getValue')
+            };
         },
 
         save: function() {
