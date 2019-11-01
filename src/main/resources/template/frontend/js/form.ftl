@@ -69,9 +69,7 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips"], function () {
                     .done(_.bind(function (response) {
                         TipsUtil.show(response.success, response.message);
                         if (response.success) {
-                            setTimeout(function () {
-                                parent.pageObj.dialogObj.close();
-                            }, 1000);
+                            this.dom.val(response.info.id);
                         }
                     }, this));
             }
