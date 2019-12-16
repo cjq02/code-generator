@@ -1,5 +1,6 @@
 package ${packageName};
 
+import com.${packageSign}.framework.exception.BusinessException;
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import com.${packageSign}.framework.spring.web.bind.annotation.JsonPathParam;
 import com.${packageSign}.framework.adapter.vo.ResponseResult;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+<#if hasForm == '1'>
+import ${packagePrefix}.application.aspect.annotation.LogActuator;
+</#if>
 
 /**
  * ${title}
@@ -76,6 +80,7 @@ public class ${controllerName} extends BaseController {
      */
     @RequestMapping(value = "/save.json")
     @ResponseBody
+    @LogActuator
     public ResponseResult save(@JsonPathParam("$.vo") ${vo} vo) {
         try {
             return new ResponseResult("保存成功", ${interfaceAlias}.save(vo, getCurrentUser()));
@@ -92,6 +97,7 @@ public class ${controllerName} extends BaseController {
      */
     @RequestMapping(value = "/delete.json")
     @ResponseBody
+    @LogActuator
     public ResponseResult delete(String id) {
         try {
             ${interfaceAlias}.delete(id);

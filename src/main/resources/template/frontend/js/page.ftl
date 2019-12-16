@@ -1,10 +1,10 @@
 var pageObj = pageObj || {};
-require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips", "jqGrid", "artDialog"], function () {
+require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips", "jqGrid"<#if hasForm == '1'>, "artDialog"</#if>], function () {
 
     var urls = pageObj.urls = {
         ${getPageMethodName}: App["contextPath"] + "/${getRootPath}/${getPageMethodName}.json",
         <#if hasForm == '1'>
-        addEditForm: App["contextPath"] + "/${getRootPath}/form.htm",
+        addEditForm: App["contextPath"] + "/${getRootPath}/form.htm?id=",
         delete: App["contextPath"] + "/${getRootPath}/delete.json"
         </#if>
     };
@@ -39,7 +39,7 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips", "jqGrid", "artDi
                 dom.getGrid().jqGrid(this.getConfig());
             },
 
-            search: function (searchData) {
+            load: function (searchData) {
                 dom.getGrid().jqGrid("setRequestData", {
                     condition: searchData,
                     pageInfo: {
@@ -56,8 +56,8 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips", "jqGrid", "artDi
                         name: "operate", label: "操作", width: 80, align: 'left',
                         formatter: function (cellContent, options, rowData) {
                             var html = '';
-                            html += "<a class='mr5' onclick='pageObj.delete(\"" + rowData.id + "\")'>删除</a>";
                             html += "<a class='mr5' onclick='pageObj.edit(\"" + rowData.id + "\")'>编辑</a>";
+                            html += "<a class='mr5' onclick='pageObj.delete(\"" + rowData.id + "\")'>删除</a>";
                             return html;
                         }
                     },
@@ -116,11 +116,13 @@ require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips", "jqGrid", "artDi
         },
 
         initPlugins: function () {
-            this.plugins.jqGrid.init();
+            _.each(plugins, function (plugin) {
+                _.isFunction(plugin.init) && plugin.init();
+            });
         },
 
         initData: function () {
-            this.plugins.jqGrid.search(this.getSearchData());
+            this.plugins.jqGrid.load(this.getSearchData());
         },
 
         initCompleted: function() {
