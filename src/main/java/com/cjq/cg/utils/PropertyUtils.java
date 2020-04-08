@@ -19,9 +19,9 @@ public class PropertyUtils {
         Properties prop;
         try {
             prop = new Properties();
-            InputStream in = PropertyUtils.class.getClassLoader().getResourceAsStream("generatorConfig.properties");
-            assert in != null;
-            prop.load(new InputStreamReader(in, StandardCharsets.UTF_8));
+            InputStream ins = PropertyUtils.class.getResourceAsStream("/generatorConfig.properties");
+            InputStreamReader reader = new InputStreamReader(ins, StandardCharsets.UTF_8);
+            prop.load(reader);
         } catch (Exception e) {
             throw new RuntimeException("加载配置文件异常!", e);
         }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
+import static com.cjq.cg.service.base.GeneratorProperty.TABLE_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
 
 /**
@@ -22,6 +23,7 @@ public class MapperGeneratorImpl extends AbstractBackendGenerator {
         map.put("mapperPackage", getPackageFileName());
         map.put("voPackage", VO_PACKAGE);
         map.put("entityPackage", VO_PACKAGE);
+        map.put("tableName", TABLE_NAME);
         map.putAll(getBackendCommonProperties());
         return map;
     }
@@ -52,15 +54,15 @@ public class MapperGeneratorImpl extends AbstractBackendGenerator {
     }
 
     public static String getPageList() {
-        return "get" + ACTION_NAME + "List";
+        return "find" + ACTION_NAME;
     }
 
     public static String getPageCount() {
-        return "get" + ACTION_NAME + "Count";
+        return "count" + ACTION_NAME;
     }
 
     private String getSqlList() {
-        return "sql" + ACTION_NAME + "List";
+        return "sql" + ACTION_NAME;
     }
 
     @Override

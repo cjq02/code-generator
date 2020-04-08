@@ -38,7 +38,7 @@
 		SELECT
 			*
 		FROM
-			t_jj_table_name t
+			${tableName} t
 		WHERE 1=1
 
 		<if test="condition.id != null and condition.id != ''">

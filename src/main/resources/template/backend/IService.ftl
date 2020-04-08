@@ -3,6 +3,9 @@ package ${packageName};
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import ${voPackage};
 <#if hasForm =='1'>
+import java.util.List;
+</#if>
+<#if hasForm =='1'>
 import ${packagePrefix}.sys.vo.UserVOExt;
 </#if>
 
@@ -22,6 +25,16 @@ public interface ${interfaceName} {
      * @return 列表
      */
     Page ${getPageMethodName}(Page page, ${condition} condition);
+
+    <#if hasForm =='2'>
+    /**
+     * 保存
+     *
+     * @param list   列表
+     * @param userId 用户ID
+     */
+    void save(List<${vo}> list, String userId);
+    </#if>
 
     <#if hasForm =='1'>
     /**

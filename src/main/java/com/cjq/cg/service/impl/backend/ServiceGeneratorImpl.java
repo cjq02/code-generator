@@ -7,8 +7,6 @@ import java.util.HashMap;
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.impl.backend.MapperGeneratorImpl.getPageCount;
 import static com.cjq.cg.service.impl.backend.MapperGeneratorImpl.getPageList;
-import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
-import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getVoById;
 
 /**
  * @author cjq

@@ -2,8 +2,9 @@
 <%@ include file="/views/_include/_jsp_tags.jsp" %>
 <%@ include file="/views/_include/_jsp_variable.jsp" %>
 <c:set var="pageTitle" value="${title}"/>
-<c:set var="pageJs" value="${r"${staticContextPath}"}/assets/js/${jspPath}.js"/>
+<c:set var="pageJs" value="${r"${staticContextPath}"}/assets/js/${jspPath}Page.js"/>
 <%@ include file="/views/application/_include_top.jsp" %>
+<%@ include file="/views/application/_template_field.jsp" %>
 <body>
 <div class="wrapper">
     <!--topSearch-->

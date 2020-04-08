@@ -1,8 +1,11 @@
 package com.cjq.cg.service.impl.frontend;
 
+import com.cjq.cg.utils.StringUtils;
 import com.google.common.collect.Maps;
 
 import java.util.HashMap;
+
+import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 
 /**
  * @author cjq
@@ -21,6 +24,11 @@ public class JspPageGeneratorImpl extends AbstractJspGeneratorImpl {
     @Override
     protected String getTemplateName() {
         return "frontend/jsp/page.ftl";
+    }
+
+    @Override
+    protected String getFileName() {
+        return StringUtils.decapitalize(ACTION_NAME) + "Page";
     }
 
 }

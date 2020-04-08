@@ -31,7 +31,7 @@ public class ${controllerName} extends BaseController {
 
     @RequestMapping(value = "/page.htm")
     public String page() {
-        return "${rootPath}";
+        return "${rootPath}Page";
     }
 
     <#if hasForm == '1'>

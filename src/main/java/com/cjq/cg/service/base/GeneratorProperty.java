@@ -16,6 +16,7 @@ public class GeneratorProperty {
     public static String RESOURCES_PATH;
     public static String JAVA_PATH;
     public static String ACTION_NAME;
+    public static String TABLE_NAME;
     public static String PACKAGE_PREFIX;
     public static String PACKAGE_SUFFIX;
     public static String PACKAGE_SIGN;
@@ -32,6 +33,7 @@ public class GeneratorProperty {
         PROJECT_PATH = properties.getProperty("project.path");
         PROJECT_NAME = properties.getProperty("project.name");
         ACTION_NAME = properties.getProperty("action.name");
+        TABLE_NAME = properties.getProperty("table.name");
         PACKAGE_PREFIX = properties.getProperty("package.prefix");
         PACKAGE_SUFFIX = properties.getProperty("package.suffix");
         RESOURCES_PATH = properties.getProperty("resource.path");

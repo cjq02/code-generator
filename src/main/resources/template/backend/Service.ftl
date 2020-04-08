@@ -4,12 +4,16 @@ import com.google.common.collect.Maps;
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import com.${packageSign}.framework.mybatis.service.impl.BaseServiceImpl;
 import ${voPackage};
+<#if hasForm == '2'>
+import com.${packageSign}.framework.base.utils.BeanUtils;
+import com.${packageSign}.framework.base.utils.DateUtils;
+import com.${packageSign}.framework.base.vo.BaseVO;
+</#if>
 <#if hasForm == '1'>
 import ${entityPackage};
 import ${packagePrefix}.sys.vo.UserVOExt;
 import com.${packageSign}.framework.base.utils.BeanUtils;
 import com.${packageSign}.framework.base.utils.StringUtils;
-import com.${packageSign}.framework.base.utils.UUIDUtils;
 import ${packagePrefix}.util.DateUtils;
 </#if>
 import org.springframework.stereotype.Service;
@@ -37,10 +41,61 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
         params.put("condition", condition);
         List<${vo}> list = this.getMyBatisDao().selectListBySql(MAPPER_NAMESPACE + ".${pageList}", params);
         int count = this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${pageCount}", params);
+        if (page == null) {
+            page = new Page();
+        }
         page.setTotalRecord(count);
         page.setRecords(list);
         return page;
     }
+
+    <#if hasForm == '2'>
+    @Override
+    public void save(List<${vo}> list, String userId) {
+
+        if (list == null) {
+            return;
+        }
+
+        addList(list, userId);
+        updateList(list, userId);
+        deleteList(list);
+    }
+
+    private void addList(List<${vo}> list, String userId) {
+        List<${vo}> newList = list.stream().filter(vo -> vo.getRowState().equals(BaseVO.RowStateEnum.ADDED.getValue()))
+                .peek(vo -> {
+                    vo.setId(null);
+                    vo.setCreateTs(DateUtils.getCurrentDate());
+                    vo.setCreateUserId(userId);
+                }).collect(Collectors.toList());
+
+        if (newList.size() > 0) {
+            this.insertList(BeanUtils.copyToNewList(newList, ${entity}.class));
+        }
+    }
+
+    private void updateList(List<${vo}> list, String userId) {
+        List<${vo}> newList = list.stream().filter(vo -> vo.getRowState().equals(BaseVO.RowStateEnum.MODIFIED.getValue()))
+                .peek(vo -> {
+                    vo.setUpdateTs(DateUtils.getCurrentDate());
+                    vo.setUpdateUserId(userId);
+                }).collect(Collectors.toList());
+
+        if (newList.size() > 0) {
+            this.update(BeanUtils.copyToNewList(newList, ${entity}.class));
+        }
+    }
+
+    private void deleteList(List<${vo}> list) {
+        List<${vo}> newList = list.stream().filter(vo -> vo.getRowState().equals(BaseVO.RowStateEnum.DELETED.getValue()))
+                .collect(Collectors.toList());
+
+        if (newList.size() > 0) {
+            this.delete(BeanUtils.copyToNewList(newList, ${entity}.class));
+        }
+    }
+    </#if>
 
     <#if hasForm == '1'>
     @Override
