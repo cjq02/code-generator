@@ -1,86 +1,19 @@
 var pageObj = pageObj || {};
-require(["jQuery", "jqForm", "jQueryUtils", "AppUtils", "Tips"], function () {
+require(["form.base"], function (superObj) {
 
-    var urls = pageObj.urls = {
-        save: App["contextPath"] + "/${getRootPath}/save.json",
-        ${getVoById}: App["contextPath"] + "/${getRootPath}/${getVoById}.json"
-    };
+    pageObj = $.extend(true, {}, superObj, pageObj, {
 
-    var dom = pageObj.dom = {
-        init: function () {
-            dom = $.extend(this, {
-                form: $('#form'),
-                id: $('[name=id]')
-            });
-        }
-    };
-
-    var plugins = pageObj.plugins = {
-
-    };
-
-    $.extend(pageObj, {
-
-        init: function () {
-            this.initPrepare();
-            this.initListeners();
-            this.initPlugins();
-            this.initData();
-            this.initCompleted();
+        urls: {
+            getData:  App["contextPath"] + "/${getRootPath}/${getVoById}.json",
+            save: App["contextPath"] + "/${getRootPath}/save.json",
         },
 
-        initPrepare: function () {
-            this.dom.init();
+        templates: {
+            fields: [
+            ]
         },
 
-        initListeners: function () {
-        },
-
-        initPlugins: function () {
-        },
-
-        initData: function () {
-            ajaxUtil.ajaxWithBlock(ajaxUtil.getAjaxSetting(urls.${getVoById}, {id: this.dom.id.val()}),
-                _.bind(function (response) {
-                    if (response.success) {
-                        this.getForm().jqForm("setDefaultValue", response.info);
-                    }
-                }, this));
-        },
-
-        initCompleted: function() {
-        },
-
-        validateRule: function () {
-            return {
-                field: {label: "字段", required: true}
-            };
-        },
-
-        getSaveData: function () {
-            return {
-                vo: this.getForm().jqForm('getValue')
-            };
-        },
-
-        save: function() {
-            if (validateUtil.validate(this.dom.form, this.validateRule())) {
-                $.ajax($.extend(true, {}, ajaxUtil.getJsonAjaxSetting(urls.save, this.getSaveData())))
-                    .done(_.bind(function (response) {
-                        TipsUtil.show(response.success, response.message);
-                        if (response.success) {
-                            this.dom.val(response.info.id);
-                        }
-                    }, this));
-            }
-        },
-
-        reset: function () {
-            this.getForm().jqForm('reset');
-        },
-
-        getForm: function () {
-            return this.dom.form.jqForm();
+        plugins: {
         }
     });
 

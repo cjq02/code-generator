@@ -1,5 +1,5 @@
 var pageObj = pageObj || {};
-require(["grid.base"<#if hasForm == '1'>, "artDialog"</#if>], function (superObj) {
+require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (superObj) {
 
     pageObj = $.extend(true, {}, superObj, pageObj, {
 
