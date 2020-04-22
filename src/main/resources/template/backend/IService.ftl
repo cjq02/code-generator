@@ -2,7 +2,7 @@ package ${packageName};
 
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import ${voPackage};
-<#if hasForm =='1'>
+<#if hasForm =='2'>
 import java.util.List;
 </#if>
 <#if hasForm =='1'>
@@ -33,7 +33,7 @@ public interface ${interfaceName} {
      * @param list   列表
      * @param userId 用户ID
      */
-    void save(List<${vo}> list, String userId);
+    void save${actionName}(List<${vo}> list, String userId);
     </#if>
 
     <#if hasForm =='1'>
@@ -52,14 +52,14 @@ public interface ${interfaceName} {
      * @param user 用户
      * @return 实体
      */
-    ${vo} save(${vo} vo, UserVOExt user);
+    ${vo} save${actionName}(${vo} vo, UserVOExt user);
 
      /**
      * 删除
      *
      * @param id 主键
      */
-    void delete(String id);
+    void delete${actionName}(String id);
     </#if>
 
 }

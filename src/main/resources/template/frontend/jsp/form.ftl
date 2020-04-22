@@ -26,4 +26,10 @@
 </div>
 </body>
 
+<script type="application/javascript">
+    pageObj = {
+        id: '${r"${id}"}'
+    }
+</script>
+
 <%@ include file="/views/application/_include_bottom.jsp" %>

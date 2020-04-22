@@ -37,7 +37,7 @@
         <div class="action fl">
             <em class="separ"></em>
             <a id="btnAdd" class="txt-all" onclick="pageObj.add()">
-                <i class="iconfont icon-search"></i>
+                <i class="iconfont icon-add"></i>
                 <span>新增</span>
             </a>
             <em class="separ"></em>

@@ -7,7 +7,7 @@ require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (superObj
             getPage: App["contextPath"] + "/${getRootPath}/${getPageMethodName}.json",
             <#if hasForm == '1'>
             addEditForm: App["contextPath"] + "/${getRootPath}/form.htm?id=",
-            delete: App["contextPath"] + "/${getRootPath}/delete.json"
+            delete: App["contextPath"] + "/${getRootPath}/delete${actionName}.json"
             </#if>
         },
 

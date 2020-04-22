@@ -3,12 +3,10 @@
 <mapper namespace="${mapperPackage}">
 
     <select id="${pageList}" parameterType="java.util.Map" resultType="${voPackage}">
-        SELECT
-			*
-		FROM
-			(<include refid="${sqlList}"/>) AS dat
+		<include refid="${sqlList}"/>
+
 		ORDER BY
-			dat.create_ts DESC
+			t.create_ts DESC
 
 		<if test="page != null and page.pageSize > 0">
 			<![CDATA[ limit ${r"#{page.pageSize}"} offset (${r"#{page.recordStart}"}-1) ]]>
@@ -25,12 +23,8 @@
 
 	<#if hasForm == '1'>
 	<select id="${getVoById}" parameterType="java.util.Map" resultType="${voPackage}">
-        SELECT
-			*
-		FROM
-			(<include refid="${sqlList}"/>) AS dat
-		WHERE
-			dat.id = ${r"#{condition.id}"}
+		<include refid="${sqlList}"/>
+			AND t.id = ${r"#{condition.id}"}
     </select>
 	</#if>
 
@@ -41,8 +35,8 @@
 			${tableName} t
 		WHERE 1=1
 
-		<if test="condition.id != null and condition.id != ''">
-			AND t.id LIKE CONCAT('%', ${r"#{condition.id}"}, '%')
+		<if test="condition.name != null and condition.name != ''">
+			AND t.name LIKE CONCAT('%', ${r"#{condition.name}"}, '%')
 		</if>
     </sql>
 

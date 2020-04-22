@@ -5,7 +5,7 @@ require(["form.base"], function (superObj) {
 
         urls: {
             getData:  App["contextPath"] + "/${getRootPath}/${getVoById}.json",
-            save: App["contextPath"] + "/${getRootPath}/save.json",
+            save: App["contextPath"] + "/${getRootPath}/save${actionName}.json",
         },
 
         templates: {

@@ -7,7 +7,6 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
-import static com.cjq.cg.service.base.GeneratorProperty.HAS_FORM;
 import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
 import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getWebModulePath;
 

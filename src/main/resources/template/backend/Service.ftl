@@ -51,7 +51,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
 
     <#if hasForm == '2'>
     @Override
-    public void save(List<${vo}> list, String userId) {
+    public void save${actionName}(List<${vo}> list, String userId) {
 
         if (list == null) {
             return;
@@ -108,7 +108,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
     }
 
     @Override
-    public ${vo} save(${vo} vo, UserVOExt user) {
+    public ${vo} save${actionName}(${vo} vo, UserVOExt user) {
         ${entity} entity = BeanUtils.copyToNewBean(vo, ${entity}.class);
         if (StringUtils.isEmpty(vo.getId())) {
             entity.setId(null);
@@ -123,7 +123,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
     }
 
     @Override
-    public void delete(String id) {
+    public void delete${actionName}(String id) {
         ${entity} entity = new ${entity}();
         entity.setId(id);
         delete(entity);

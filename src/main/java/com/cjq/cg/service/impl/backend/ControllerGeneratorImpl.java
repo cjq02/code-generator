@@ -9,8 +9,6 @@ import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SUFFIX;
 import static com.cjq.cg.service.impl.backend.ServiceGeneratorImpl.getInterfaceName;
 import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getInterfacePath;
-import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getPageMethodName;
-import static com.cjq.cg.service.impl.backend.ServiceIntfGeneratorImpl.getVoById;
 import static com.cjq.cg.service.impl.frontend.AbstractJspGeneratorImpl.getRootPath;
 
 /**
