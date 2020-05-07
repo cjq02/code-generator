@@ -23,8 +23,9 @@ public interface ${interfaceName} {
      * @param page 页面
      * @param condition 查询条件
      * @return 列表
+     * @throws BusinessException 业务异常
      */
-    Page ${getPageMethodName}(Page page, ${condition} condition);
+    Page ${getPageMethodName}(Page page, ${condition} condition) throws BusinessException;
 
     <#if hasForm =='2'>
     /**
@@ -32,8 +33,9 @@ public interface ${interfaceName} {
      *
      * @param list   列表
      * @param userId 用户ID
+     * @throws BusinessException 业务异常
      */
-    void save${actionName}(List<${vo}> list, String userId);
+    void save${actionName}(List<${vo}> list, String userId) throws BusinessException;
     </#if>
 
     <#if hasForm =='1'>
@@ -42,8 +44,9 @@ public interface ${interfaceName} {
      *
      * @param id 主键
      * @return 实体
+     * @throws BusinessException 业务异常
      */
-    ${vo} ${getVoById}(String id);
+    ${vo} ${getVoById}(String id) throws BusinessException;
 
      /**
      * 保存
@@ -51,15 +54,17 @@ public interface ${interfaceName} {
      * @param vo 实体
      * @param user 用户
      * @return 实体
+     * @throws BusinessException 业务异常
      */
-    ${vo} save${actionName}(${vo} vo, UserVOExt user);
+    ${vo} save${actionName}(${vo} vo, UserVOExt user) throws BusinessException;
 
      /**
      * 删除
      *
      * @param id 主键
+     * @throws BusinessException 业务异常
      */
-    void delete${actionName}(String id);
+    void delete${actionName}(String id) throws BusinessException;
     </#if>
 
 }

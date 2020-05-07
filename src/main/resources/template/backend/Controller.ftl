@@ -1,6 +1,5 @@
 package ${packageName};
 
-import com.${packageSign}.framework.exception.BusinessException;
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import com.${packageSign}.framework.spring.web.bind.annotation.JsonPathParam;
 import com.${packageSign}.framework.adapter.vo.ResponseResult;
