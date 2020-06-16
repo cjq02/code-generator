@@ -4,17 +4,14 @@ import com.google.common.collect.Maps;
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import com.${packageSign}.framework.mybatis.service.impl.BaseServiceImpl;
 import ${voPackage};
-<#if hasForm == '2'>
-import com.${packageSign}.framework.base.utils.BeanUtils;
-import com.${packageSign}.framework.base.utils.DateUtils;
-import com.${packageSign}.framework.base.vo.BaseVO;
-</#if>
 <#if hasForm == '1'>
 import ${entityPackage};
 import ${packagePrefix}.sys.vo.UserVOExt;
+import com.${packageSign}.framework.base.utils.DateUtils;
+import com.${packageSign}.framework.base.vo.BaseVO;
 import com.${packageSign}.framework.base.utils.BeanUtils;
 import com.${packageSign}.framework.base.utils.StringUtils;
-import ${packagePrefix}.util.DateUtils;
+import java.util.stream.Collectors;
 </#if>
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,7 +46,14 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
         return page;
     }
 
-    <#if hasForm == '2'>
+    @Override
+    public ${vo} get${actionName}ByParam(${condition} condition) {
+        Map<String, Object> params = Maps.newHashMap();
+        params.put("condition", condition);
+        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${pageList}", params);
+    }
+
+    <#if hasForm == '1'>
     @Override
     public void save${actionName}(List<${vo}> list, String userId) {
 
@@ -95,9 +99,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
             this.delete(BeanUtils.copyToNewList(newList, ${entity}.class));
         }
     }
-    </#if>
 
-    <#if hasForm == '1'>
     @Override
     public ${vo} ${getVoById}(String id) {
         Map<String, Object> params = Maps.newHashMap();
@@ -113,10 +115,10 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
         if (StringUtils.isEmpty(vo.getId())) {
             entity.setId(null);
             entity.setCreateUserId(user.getId());
-            entity.setCreateTs(DateUtils.getCurrentTime());
+            entity.setCreateTs(DateUtils.getCurrentDate());
             /*entity.setCorpId(user.getCorpId());*/
         } else {
-            entity.setUpdateTs(DateUtils.getCurrentTime());
+            entity.setUpdateTs(DateUtils.getCurrentDate());
             entity.setUpdateUserId(user.getId());
         }
         return BeanUtils.copyToNewBean(this.saveWithQuery(entity), ${vo}.class);

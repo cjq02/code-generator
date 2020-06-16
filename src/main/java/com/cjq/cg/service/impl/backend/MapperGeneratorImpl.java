@@ -54,7 +54,7 @@ public class MapperGeneratorImpl extends AbstractBackendGenerator {
     }
 
     public static String getPageList() {
-        return "find" + ACTION_NAME;
+        return "find" + ACTION_NAME + "List";
     }
 
     public static String getPageCount() {

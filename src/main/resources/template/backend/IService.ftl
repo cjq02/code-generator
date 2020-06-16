@@ -1,12 +1,11 @@
 package ${packageName};
 
+import com.${packageSign}.framework.exception.BusinessException;
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import ${voPackage};
-<#if hasForm =='2'>
-import java.util.List;
-</#if>
 <#if hasForm =='1'>
 import ${packagePrefix}.sys.vo.UserVOExt;
+import java.util.List;
 </#if>
 
 /**
@@ -27,7 +26,16 @@ public interface ${interfaceName} {
      */
     Page ${getPageMethodName}(Page page, ${condition} condition) throws BusinessException;
 
-    <#if hasForm =='2'>
+    /**
+     * 根据条件获取一条记录
+     *
+     * @param condition 查询条件
+     * @return 实体
+     * @throws BusinessException 业务异常
+     */
+    ${vo} get${actionName}ByParam(${condition} condition) throws BusinessException;
+
+    <#if hasForm =='1'>
     /**
      * 保存
      *
@@ -36,9 +44,7 @@ public interface ${interfaceName} {
      * @throws BusinessException 业务异常
      */
     void save${actionName}(List<${vo}> list, String userId) throws BusinessException;
-    </#if>
 
-    <#if hasForm =='1'>
     /**
      * 根据ID获取实体
      *

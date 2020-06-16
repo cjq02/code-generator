@@ -35,6 +35,10 @@
 			${tableName} t
 		WHERE 1=1
 
+		<if test="condition.id != null and condition.id != ''">
+			AND t.id = ${r"#{condition.id}"}
+		</if>
+
 		<if test="condition.name != null and condition.name != ''">
 			AND t.name LIKE CONCAT('%', ${r"#{condition.name}"}, '%')
 		</if>

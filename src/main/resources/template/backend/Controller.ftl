@@ -34,11 +34,29 @@ public class ${controllerName} extends BaseController {
         return "${rootPath}Page";
     }
 
+    /**
+     * 根据条件获取记录
+     *
+     * @param condition 查询条件
+     * @return 响应结果
+     */
+    @RequestMapping(value = "/get${actionName}ByParam.json", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult get${actionName}ByParam(@JsonPathParam("$.condition") ${condition} condition) {
+        return new ResponseResult(${interfaceAlias}.get${actionName}ByParam(condition));
+    }
+
     <#if hasForm == '1'>
     @RequestMapping(value = "/form.htm")
     public String form(Model model, String id) {
         model.addAttribute("id", id);
         return "${rootPath}Form";
+    }
+
+    @RequestMapping(value = "/view.htm")
+    public String view(Model model, String id) {
+        model.addAttribute("id", id);
+        return "${rootPath}View";
     }
     </#if>
 
