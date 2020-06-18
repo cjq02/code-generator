@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 <#if hasForm == '1'>
 import ${packagePrefix}.application.aspect.annotation.LogActuator;
+import java.util.List;
 </#if>
 
 /**
@@ -34,18 +35,6 @@ public class ${controllerName} extends BaseController {
         return "${rootPath}Page";
     }
 
-    /**
-     * 根据条件获取记录
-     *
-     * @param condition 查询条件
-     * @return 响应结果
-     */
-    @RequestMapping(value = "/get${actionName}ByParam.json", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseResult get${actionName}ByParam(@JsonPathParam("$.condition") ${condition} condition) {
-        return new ResponseResult(${interfaceAlias}.get${actionName}ByParam(condition));
-    }
-
     <#if hasForm == '1'>
     @RequestMapping(value = "/form.htm")
     public String form(Model model, String id) {
@@ -59,6 +48,18 @@ public class ${controllerName} extends BaseController {
         return "${rootPath}View";
     }
     </#if>
+
+    /**
+     * 根据条件获取记录
+     *
+     * @param condition 查询条件
+     * @return 响应结果
+     */
+    @RequestMapping(value = "/get${actionName}ByParam.json", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult get${actionName}ByParam(@JsonPathParam("$.condition") ${condition} condition) {
+        return new ResponseResult(${interfaceAlias}.get${actionName}ByParam(condition));
+    }
 
     /**
      * 列表
@@ -80,7 +81,7 @@ public class ${controllerName} extends BaseController {
      * @param id 主键
      * @return 响应结果
      */
-    @RequestMapping(value = "/${getVoById}.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/${getVoById}.json", method = RequestMethod.POST)
     @ResponseBody
     public ResponseResult ${getVoById}(String id) {
         return new ResponseResult(${interfaceAlias}.${getVoById}(id));
@@ -97,6 +98,20 @@ public class ${controllerName} extends BaseController {
     @LogActuator
     public ResponseResult save${actionName}(@JsonPathParam("$.vo") ${vo} vo) {
         return new ResponseResult("保存成功", ${interfaceAlias}.save${actionName}(vo, getCurrentUser()));
+    }
+
+    /**
+     * 保存
+     *
+     * @param list 实体
+     * @return 响应结果
+     */
+    @RequestMapping(value = "/save${actionName}List.json", method = RequestMethod.POST)
+    @ResponseBody
+    @LogActuator
+    public ResponseResult save${actionName}List(@JsonPathParam("$.list") List<${vo}> list) {
+        ${interfaceAlias}.save${actionName}List(list, getCurrentUser());
+        return new ResponseResult("保存成功");
     }
 
     /**

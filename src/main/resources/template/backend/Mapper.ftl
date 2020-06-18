@@ -21,13 +21,6 @@
 		) AS dat
     </select>
 
-	<#if hasForm == '1'>
-	<select id="${getVoById}" parameterType="java.util.Map" resultType="${voPackage}">
-		<include refid="${sqlList}"/>
-			AND t.id = ${r"#{condition.id}"}
-    </select>
-	</#if>
-
     <sql id="${sqlList}">
 		SELECT
 			*

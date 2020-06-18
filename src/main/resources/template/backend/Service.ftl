@@ -47,6 +47,13 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
     }
 
     @Override
+    public List<${vo}> ${pageList}(${condition} condition) {
+        Map<String, Object> params = Maps.newHashMap();
+        params.put("condition", condition);
+        return this.getMyBatisDao().selectListBySql(MAPPER_NAMESPACE + ".${pageList}", params);
+    }
+
+    @Override
     public ${vo} get${actionName}ByParam(${condition} condition) {
         Map<String, Object> params = Maps.newHashMap();
         params.put("condition", condition);
@@ -55,48 +62,49 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
 
     <#if hasForm == '1'>
     @Override
-    public void save${actionName}(List<${vo}> list, String userId) {
-
+    public void save${actionName}List(List<${vo}> list, UserVOExt user) {
         if (list == null) {
             return;
         }
 
-        addList(list, userId);
-        updateList(list, userId);
-        deleteList(list);
+        List<${entity}> entities = BeanUtils.copyToNewList(list, ${entity}.class);
+
+        addList(entities, user.getId());
+        updateList(entities, user.getId());
+        deleteList(entities);
     }
 
-    private void addList(List<${vo}> list, String userId) {
-        List<${vo}> newList = list.stream().filter(vo -> vo.getRowState().equals(BaseVO.RowStateEnum.ADDED.getValue()))
-                .peek(vo -> {
-                    vo.setId(null);
-                    vo.setCreateTs(DateUtils.getCurrentDate());
-                    vo.setCreateUserId(userId);
+    private void addList(List<${entity}> list, String userId) {
+        List<${entity}> newList = list.stream().filter(entity -> entity.getRowState().equals(BaseVO.RowStateEnum.ADDED.getValue()))
+                .peek(entity -> {
+                    entity.setId(null);
+                    entity.setCreateTs(DateUtils.getCurrentDate());
+                    entity.setCreateUserId(userId);
                 }).collect(Collectors.toList());
 
         if (newList.size() > 0) {
-            this.insertList(BeanUtils.copyToNewList(newList, ${entity}.class));
+            this.insertList(newList);
         }
     }
 
-    private void updateList(List<${vo}> list, String userId) {
-        List<${vo}> newList = list.stream().filter(vo -> vo.getRowState().equals(BaseVO.RowStateEnum.MODIFIED.getValue()))
-                .peek(vo -> {
-                    vo.setUpdateTs(DateUtils.getCurrentDate());
-                    vo.setUpdateUserId(userId);
+    private void updateList(List<${entity}> list, String userId) {
+        List<${entity}> newList = list.stream().filter(entity -> entity.getRowState().equals(BaseVO.RowStateEnum.MODIFIED.getValue()))
+                .peek(entity -> {
+                    entity.setUpdateTs(DateUtils.getCurrentDate());
+                    entity.setUpdateUserId(userId);
                 }).collect(Collectors.toList());
 
         if (newList.size() > 0) {
-            this.update(BeanUtils.copyToNewList(newList, ${entity}.class));
+            this.update(newList);
         }
     }
 
-    private void deleteList(List<${vo}> list) {
-        List<${vo}> newList = list.stream().filter(vo -> vo.getRowState().equals(BaseVO.RowStateEnum.DELETED.getValue()))
+    private void deleteList(List<${entity}> list) {
+        List<${entity}> newList = list.stream().filter(entity -> entity.getRowState().equals(BaseVO.RowStateEnum.DELETED.getValue()))
                 .collect(Collectors.toList());
 
         if (newList.size() > 0) {
-            this.delete(BeanUtils.copyToNewList(newList, ${entity}.class));
+            this.delete(newList);
         }
     }
 
@@ -106,7 +114,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
         ${condition} condition = new ${condition}();
         condition.setId(id);
         params.put("condition", condition);
-        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${getVoById}", params);
+        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${pageList}", params);
     }
 
     @Override

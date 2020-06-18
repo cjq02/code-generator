@@ -27,6 +27,15 @@ public interface ${interfaceName} {
     Page ${getPageMethodName}(Page page, ${condition} condition) throws BusinessException;
 
     /**
+     * 列表查询
+     *
+     * @param condition 查询条件
+     * @return 列表
+     * @throws BusinessException 业务异常
+     */
+    List<${vo}> ${pageList}(${condition} condition) throws BusinessException;
+
+    /**
      * 根据条件获取一条记录
      *
      * @param condition 查询条件
@@ -40,10 +49,10 @@ public interface ${interfaceName} {
      * 保存
      *
      * @param list   列表
-     * @param userId 用户ID
+     * @param user 用户
      * @throws BusinessException 业务异常
      */
-    void save${actionName}(List<${vo}> list, String userId) throws BusinessException;
+    void save${actionName}List(List<${vo}> list, UserVOExt user) throws BusinessException;
 
     /**
      * 根据ID获取实体
