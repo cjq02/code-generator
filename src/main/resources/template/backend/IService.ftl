@@ -5,8 +5,8 @@ import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import ${voPackage};
 <#if hasForm =='1'>
 import ${packagePrefix}.sys.vo.UserVOExt;
-import java.util.List;
 </#if>
+import java.util.List;
 
 /**
  * ${title} 接口

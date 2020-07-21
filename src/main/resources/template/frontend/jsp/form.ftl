@@ -7,18 +7,8 @@
 <%@ include file="/views/application/_template_field.jsp" %>
 <body>
 <div class="wrapper">
-    <form id="form">
-        <div class="top-search">
-            <div class="row col-sm-12">
-                <input type="hidden" name="id" value="${r"${id}"}"/>
-                <ul class="form-grid">
-                    <li class="col-sm-12">
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </form>
-    <div class="bottom-bar fr">
+    <form id="form"></form>
+    <div id="bottomBar" class="bottom-bar fr">
         <a href="javascript:pageObj.save()" class="btn btn-primary">
             <i class="iconfont icon-save"></i>保存
         </a>

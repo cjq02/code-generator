@@ -1,8 +1,9 @@
 var pageObj = pageObj || {};
-require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (superObj) {
+require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (baseObj) {
 
-    pageObj = $.extend(true, {}, superObj, pageObj, {
+    $.extend(true, pageObj, baseObj, {});
 
+    $.extend(true, pageObj, {
         urls: {
             getPage: App["contextPath"] + "/${getRootPath}/${getPageMethodName}.json",
             <#if hasForm == '1'>
@@ -10,12 +11,15 @@ require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (superObj
             delete: App["contextPath"] + "/${getRootPath}/delete${actionName}.json"
             </#if>
         },
+    });
 
+    $.extend(true, pageObj, {
         templates: {
-            searchFields: [
-            ]
-        },
+            searchFields: []
+        }
+    });
 
+    $.extend(true, pageObj, {
         plugins: {
             jqGrid: {
                 getColModel: function () {
@@ -39,6 +43,8 @@ require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (superObj
             }
         }
     });
+
+    $.extend(true, pageObj, {});
 
     $(window).ready(function () {
         pageObj.init();
