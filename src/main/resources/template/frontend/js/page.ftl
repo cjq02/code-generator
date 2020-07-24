@@ -23,7 +23,7 @@ require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (baseObj)
         plugins: {
             jqGrid: {
                 getColModel: function () {
-                    var _colModelExt = this.colModelExt;
+                    var colModelExt = this.colModelExt;
                     return [
                         {name: "id",label: "主键",hidden: true},
                         <#if hasForm == '1'>

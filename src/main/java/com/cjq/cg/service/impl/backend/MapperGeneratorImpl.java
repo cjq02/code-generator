@@ -1,5 +1,6 @@
 package com.cjq.cg.service.impl.backend;
 
+import com.cjq.cg.utils.StringUtils;
 import com.google.common.collect.Maps;
 
 import java.util.HashMap;
@@ -62,7 +63,7 @@ public class MapperGeneratorImpl extends AbstractBackendGenerator {
     }
 
     private String getSqlList() {
-        return "sql" + ACTION_NAME;
+        return "sql_" + StringUtils.camelCaseToSnakeCase(ACTION_NAME);
     }
 
     @Override
