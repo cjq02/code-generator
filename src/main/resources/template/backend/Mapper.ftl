@@ -32,8 +32,8 @@
 			AND t.id = ${r"#{condition.id}"}
 		</if>
 
-		<if test="condition.name != null and condition.name != ''">
-			AND t.name LIKE CONCAT('%', ${r"#{condition.name}"}, '%')
+		<if test="condition.id != null and condition.id != ''">
+			AND t.id LIKE CONCAT('%', ${r"#{condition.id}"}, '%')
 		</if>
     </sql>
 

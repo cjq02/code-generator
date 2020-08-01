@@ -5,7 +5,6 @@ import com.google.common.collect.Maps;
 
 import java.util.HashMap;
 
-import static com.cjq.cg.service.base.GeneratorProperty.ENTITY_PACKAGE;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_PREFIX;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SIGN;
 import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
@@ -30,7 +29,7 @@ abstract class AbstractBackendGenerator extends BaseGenerator {
         map.put("vo", getVoName());
         map.put("voPackage", VO_PACKAGE);
         map.put("entity", getEntityName());
-        map.put("entityPackage", ENTITY_PACKAGE);
+        map.put("entityPackage", getEntityPackage());
         map.put("getPageMethodName", getPageMethodName());
         map.put("getVoById", getVoById());
         map.put("pageList", getPageList());
@@ -43,8 +42,12 @@ abstract class AbstractBackendGenerator extends BaseGenerator {
         return arr[arr.length - 1];
     }
 
+    private String getEntityPackage() {
+        return VO_PACKAGE.replace("vo", "entity").replace("VOExt", "Entity").replace("VO", "Entity");
+    }
+
     private String getEntityName() {
-        String[] arr = ENTITY_PACKAGE.split("\\.");
+        String[] arr = getEntityPackage().split("\\.");
         return arr[arr.length - 1];
     }
 

@@ -25,6 +25,7 @@ public class ControllerGeneratorImpl extends AbstractBackendGenerator {
         map.put("interfaceAlias", getInterfaceAlias());
         map.put("webModulePath", getWebModulePath());
         map.put("rootPath", getRootPath());
+        map.put("routePath", getRoutePath());
         map.put("controllerName", getFileName());
         map.putAll(getBackendCommonProperties());
         return map;
@@ -61,5 +62,9 @@ public class ControllerGeneratorImpl extends AbstractBackendGenerator {
 
     public static String getWebModulePath() {
         return PACKAGE_SUFFIX.replace(".${type}", "").replace(".", "/");
+    }
+
+    public static String getRoutePath() {
+        return getWebModulePath() + "/" + StringUtils.decapitalize(ACTION_NAME);
     }
 }

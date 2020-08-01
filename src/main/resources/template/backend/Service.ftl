@@ -124,7 +124,6 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
             entity.setId(null);
             entity.setCreateUserId(user.getId());
             entity.setCreateTs(DateUtils.getCurrentDate());
-            /*entity.setCorpId(user.getCorpId());*/
         } else {
             entity.setUpdateTs(DateUtils.getCurrentDate());
             entity.setUpdateUserId(user.getId());

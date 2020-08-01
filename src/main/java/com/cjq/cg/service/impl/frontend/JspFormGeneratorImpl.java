@@ -4,6 +4,8 @@ import com.google.common.collect.Maps;
 
 import java.util.HashMap;
 
+import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getRoutePath;
+
 /**
  * @author cjq
  * @date 2019-10-30
@@ -14,7 +16,7 @@ public class JspFormGeneratorImpl extends AbstractJspGeneratorImpl {
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
         map.putAll(super.getTemplateProperties());
-        map.put("jspPath", getRootPath() + "Form");
+        map.put("jspPath", getRoutePath() + "Form");
         return map;
     }
 

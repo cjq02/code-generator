@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 <#if hasForm == '1'>
-import ${packagePrefix}.application.aspect.annotation.LogActuator;
 import java.util.List;
 </#if>
 
@@ -32,20 +31,20 @@ public class ${controllerName} extends BaseController {
 
     @RequestMapping(value = "/page.htm")
     public String page() {
-        return "${rootPath}Page";
+        return "${routePath}Page";
     }
 
     <#if hasForm == '1'>
     @RequestMapping(value = "/form.htm")
     public String form(Model model, String id) {
         model.addAttribute("id", id);
-        return "${rootPath}Form";
+        return "${routePath}Form";
     }
 
     @RequestMapping(value = "/view.htm")
     public String view(Model model, String id) {
         model.addAttribute("id", id);
-        return "${rootPath}View";
+        return "${routePath}View";
     }
     </#if>
 
@@ -95,7 +94,6 @@ public class ${controllerName} extends BaseController {
      */
     @RequestMapping(value = "/save${actionName}.json", method = RequestMethod.POST)
     @ResponseBody
-    @LogActuator
     public ResponseResult save${actionName}(@JsonPathParam("$.vo") ${vo} vo) {
         return new ResponseResult("保存成功", ${interfaceAlias}.save${actionName}(vo, getCurrentUser()));
     }
@@ -108,7 +106,6 @@ public class ${controllerName} extends BaseController {
      */
     @RequestMapping(value = "/save${actionName}List.json", method = RequestMethod.POST)
     @ResponseBody
-    @LogActuator
     public ResponseResult save${actionName}List(@JsonPathParam("$.list") List<${vo}> list) {
         ${interfaceAlias}.save${actionName}List(list, getCurrentUser());
         return new ResponseResult("保存成功");
@@ -122,7 +119,6 @@ public class ${controllerName} extends BaseController {
      */
     @RequestMapping(value = "/delete${actionName}.json", method = RequestMethod.POST)
     @ResponseBody
-    @LogActuator
     public ResponseResult delete${actionName}(String id) {
         ${interfaceAlias}.delete${actionName}(id);
         return new ResponseResult("删除成功");

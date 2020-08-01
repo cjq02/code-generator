@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
+import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getRoutePath;
 
 /**
  * @author cjq
@@ -17,7 +18,7 @@ public class JspPageGeneratorImpl extends AbstractJspGeneratorImpl {
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
         map.putAll(super.getTemplateProperties());
-        map.put("jspPath", getRootPath());
+        map.put("jspPath", getRoutePath());
         return map;
     }
 

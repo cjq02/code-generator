@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import static com.cjq.cg.service.base.GeneratorProperty.ACTION_NAME;
 import static com.cjq.cg.service.base.GeneratorProperty.RESOURCES_PATH;
+import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getRoutePath;
 import static com.cjq.cg.service.impl.backend.ControllerGeneratorImpl.getWebModulePath;
 
 /**
@@ -18,7 +19,7 @@ public abstract class AbstractJspGeneratorImpl extends BaseGenerator {
     @Override
     protected HashMap<String, String> getTemplateProperties() {
         HashMap<String, String> map = Maps.newHashMap();
-        map.put("jspPath", getRootPath());
+        map.put("jspPath", getRoutePath());
         return map;
     }
 
@@ -48,6 +49,7 @@ public abstract class AbstractJspGeneratorImpl extends BaseGenerator {
     }
 
     public static String getRootPath() {
-        return getWebModulePath() + "/" + StringUtils.decapitalize(ACTION_NAME);
+        String webModulePath = StringUtils.capitalize(getWebModulePath());
+        return getWebModulePath() + "/" + StringUtils.decapitalize(ACTION_NAME.replace(webModulePath, ""));
     }
 }

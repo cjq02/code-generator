@@ -24,7 +24,6 @@ public class GeneratorProperty {
     public static String FILE_AUTHOR;
     public static String FILE_DATE;
     public static String VO_PACKAGE;
-    public static String ENTITY_PACKAGE;
     public static String HAS_FORM;
 
     static void init() {
@@ -44,7 +43,6 @@ public class GeneratorProperty {
         FILE_DATE = properties.getProperty("date");
         PACKAGE_SIGN = properties.getProperty("package.sign");
         VO_PACKAGE = properties.getProperty("vo.package");
-        ENTITY_PACKAGE = properties.getProperty("entity.package");
         HAS_FORM = properties.getProperty("hasForm");
     }
 
