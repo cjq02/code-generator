@@ -19,7 +19,7 @@ public class PropertyUtils {
         Properties prop;
         try {
             prop = new Properties();
-            InputStream ins = PropertyUtils.class.getResourceAsStream("/generatorConfig.properties");
+            InputStream ins = PropertyUtils.class.getResourceAsStream("/generator.properties");
             InputStreamReader reader = new InputStreamReader(ins, StandardCharsets.UTF_8);
             prop.load(reader);
         } catch (Exception e) {
