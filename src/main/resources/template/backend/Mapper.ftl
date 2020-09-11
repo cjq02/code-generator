@@ -32,9 +32,9 @@
 			AND t.id = ${r"#{condition.id}"}
 		</if>
 
-		<if test="condition.id != null and condition.id != ''">
+		<!--<if test="condition.id != null and condition.id != ''">
 			AND t.id LIKE CONCAT('%', ${r"#{condition.id}"}, '%')
-		</if>
+		</if>-->
     </sql>
 
 </mapper>

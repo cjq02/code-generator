@@ -12,7 +12,12 @@ require(["form.base"], function (baseObj) {
 
     $.extend(true, pageObj, {
         templates: {
-            fields: []
+            fields: [],
+            ,
+            bottomButtons: [
+                {name: 'saveThenClose', label: '保存', btnLevel: 'primary', btnIcon: 'save'},
+                {name: 'cancel', label: '取消', btnLevel: 'default'},
+            ]
         }
     });
 

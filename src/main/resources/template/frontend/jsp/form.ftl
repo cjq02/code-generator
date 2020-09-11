@@ -9,9 +9,7 @@
 <div class="wrapper">
     <form id="form"></form>
     <div id="bottomBar" class="bottom-bar fr">
-        <a href="javascript:pageObj.save()" class="btn btn-primary">
-            <i class="iconfont icon-save"></i>保存
-        </a>
+
     </div>
 </div>
 </body>

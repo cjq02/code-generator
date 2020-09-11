@@ -32,7 +32,7 @@ require(["page.base"<#if hasForm == '1'>, "artDialog"</#if>], function (baseObj)
                             formatter: function (cellContent, options, rowData) {
                                 var html = '';
                                 html += "<a class='mr5' onclick='pageObj.edit(\"" + rowData.id + "\")'>编辑</a>";
-                                html += "<a class='mr5' onclick='pageObj.delete(\"" + rowData.id + "\")'>删除</a>";
+                                html += "<a class='mr5' onclick='pageObj.delete(this, \"" + rowData.id + "\")'>删除</a>";
                                 return html;
                             }
                         },
