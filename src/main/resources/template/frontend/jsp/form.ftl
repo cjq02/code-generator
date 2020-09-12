@@ -7,7 +7,7 @@
 <%@ include file="/views/application/_template_field.jsp" %>
 <body>
 <div class="wrapper">
-    <form id="form"></form>
+    <form id="form" style="overflow-y: auto;"></form>
     <div id="bottomBar" class="bottom-bar fr">
 
     </div>
