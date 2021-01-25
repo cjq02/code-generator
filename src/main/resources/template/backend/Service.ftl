@@ -114,7 +114,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
         ${condition} condition = new ${condition}();
         condition.setId(id);
         params.put("condition", condition);
-        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${pageList}", params);
+        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${getVoById}", params);
     }
 
     @Override

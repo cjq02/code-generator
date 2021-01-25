@@ -4,6 +4,7 @@
 
     <select id="${pageList}" parameterType="java.util.Map" resultType="${voPackage}">
 		<include refid="${sqlList}"/>
+		<include refid="${sqlList}_where"/>
 
 		ORDER BY
 			t.create_ts DESC
@@ -18,7 +19,13 @@
 			COUNT(*)
 		FROM (
 			<include refid="${sqlList}"/>
+			<include refid="${sqlList}_where"/>
 		) AS dat
+    </select>
+
+	<select id="${getVoById}" parameterType="java.util.Map" resultType="${voPackage}">
+		<include refid="${sqlList}"/>
+		AND t.id = ${r"#{condition.id}"}
     </select>
 
     <sql id="${sqlList}">
@@ -27,13 +34,11 @@
 		FROM
 			${tableName} t
 		WHERE 1=1
+    </sql>
 
-		<if test="condition.id != null and condition.id != ''">
-			AND t.id = ${r"#{condition.id}"}
-		</if>
-
-		<!--<if test="condition.id != null and condition.id != ''">
-			AND t.id LIKE CONCAT('%', ${r"#{condition.id}"}, '%')
+	<sql id="${sqlList}_where">
+		<!--<if test="condition.name != null and condition.name != ''">
+			AND t.name LIKE CONCAT('%', ${r"#{condition.name}"}, '%')
 		</if>-->
     </sql>
 
