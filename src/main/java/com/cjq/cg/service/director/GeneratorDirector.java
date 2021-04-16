@@ -25,7 +25,7 @@ public class GeneratorDirector {
     public static void run() {
         List<IGenerator> iGeneratorList = new ArrayList<>();
         addBackendGenerator(iGeneratorList);
-        /*addFrontendGenerator(iGeneratorList);*/
+        addFrontendGenerator(iGeneratorList);
         iGeneratorList.forEach(IGenerator::generate);
     }
 
@@ -42,7 +42,7 @@ public class GeneratorDirector {
         iGeneratorList.add(new MapperGeneratorImpl());
         iGeneratorList.add(new ServiceIntfGeneratorImpl());
         iGeneratorList.add(new ServiceGeneratorImpl());
-        /*iGeneratorList.add(new ControllerGeneratorImpl());*/
+        iGeneratorList.add(new ControllerGeneratorImpl());
     }
 
 }

@@ -3,8 +3,8 @@
 <mapper namespace="${mapperPackage}">
 
     <select id="${pageList}" parameterType="java.util.Map" resultType="${voPackage}">
-		<include refid="${sqlList}"/>
-		<include refid="${sqlList}_where"/>
+		<include refid="${sqlData}_list"/>
+		<include refid="${sqlData}_where"/>
 
 		ORDER BY
 			t.create_ts DESC
@@ -18,17 +18,22 @@
         SELECT
 			COUNT(*)
 		FROM (
-			<include refid="${sqlList}"/>
-			<include refid="${sqlList}_where"/>
+			<include refid="${sqlData}_list"/>
+			<include refid="${sqlData}_where"/>
 		) AS dat
     </select>
 
 	<select id="${getVoById}" parameterType="java.util.Map" resultType="${voPackage}">
-		<include refid="${sqlList}"/>
+		<include refid="${sqlData}"/>
 		AND t.id = ${r"#{condition.id}"}
     </select>
 
-    <sql id="${sqlList}">
+	<select id="get${actionName}ByParam" parameterType="java.util.Map" resultType="${voPackage}">
+		<include refid="${sqlData}"/>
+		<include refid="${sqlData}_where"/>
+	</select>
+
+	<sql id="${sqlData}">
 		SELECT
 			*
 		FROM
@@ -36,7 +41,15 @@
 		WHERE 1=1
     </sql>
 
-	<sql id="${sqlList}_where">
+    <sql id="${sqlData}_list">
+		SELECT
+			*
+		FROM
+			${tableName} t
+		WHERE 1=1
+    </sql>
+
+	<sql id="${sqlData}_where">
 		<!--<if test="condition.name != null and condition.name != ''">
 			AND t.name LIKE CONCAT('%', ${r"#{condition.name}"}, '%')
 		</if>-->

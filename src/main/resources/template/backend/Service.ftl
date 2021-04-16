@@ -57,7 +57,7 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
     public ${vo} get${actionName}ByParam(${condition} condition) {
         Map<String, Object> params = Maps.newHashMap();
         params.put("condition", condition);
-        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".${pageList}", params);
+        return this.getMyBatisDao().selectOneBySql(MAPPER_NAMESPACE + ".get${actionName}ByParam", params);
     }
 
     <#if hasForm == '1'>

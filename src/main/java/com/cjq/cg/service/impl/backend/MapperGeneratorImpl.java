@@ -20,7 +20,7 @@ public class MapperGeneratorImpl extends AbstractBackendGenerator {
         HashMap<String, String> map = Maps.newHashMap();
         map.put("pageList", getPageList());
         map.put("pageCount", getPageCount());
-        map.put("sqlList", getSqlList());
+        map.put("sqlData", getSqlData());
         map.put("mapperPackage", getPackageFileName());
         map.put("voPackage", VO_PACKAGE);
         map.put("entityPackage", VO_PACKAGE);
@@ -62,7 +62,7 @@ public class MapperGeneratorImpl extends AbstractBackendGenerator {
         return "count" + ACTION_NAME;
     }
 
-    private String getSqlList() {
+    private String getSqlData() {
         return "sql_" + StringUtils.camelCaseToSnakeCase(ACTION_NAME);
     }
 
