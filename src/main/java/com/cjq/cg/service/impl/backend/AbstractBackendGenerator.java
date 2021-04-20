@@ -1,10 +1,12 @@
 package com.cjq.cg.service.impl.backend;
 
 import com.cjq.cg.service.base.BaseGenerator;
+import com.cjq.cg.utils.StringUtils;
 import com.google.common.collect.Maps;
 
 import java.util.HashMap;
 
+import static com.cjq.cg.service.base.GeneratorProperty.ENTITY_PACKAGE;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_PREFIX;
 import static com.cjq.cg.service.base.GeneratorProperty.PACKAGE_SIGN;
 import static com.cjq.cg.service.base.GeneratorProperty.VO_PACKAGE;
@@ -43,6 +45,9 @@ abstract class AbstractBackendGenerator extends BaseGenerator {
     }
 
     private String getEntityPackage() {
+        if (StringUtils.isNotBlank(ENTITY_PACKAGE)) {
+            return ENTITY_PACKAGE;
+        }
         return VO_PACKAGE.replace("vo", "entity").replace("VOExt", "Entity").replace("VO", "Entity");
     }
 
