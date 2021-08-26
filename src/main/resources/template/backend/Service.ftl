@@ -6,7 +6,6 @@ import com.${packageSign}.framework.mybatis.service.impl.BaseServiceImpl;
 import ${voPackage};
 <#if hasForm == '1'>
 import ${entityPackage};
-import ${packagePrefix}.sys.vo.UserVOExt;
 import com.${packageSign}.framework.base.utils.DateUtils;
 import com.${packageSign}.framework.base.vo.BaseVO;
 import com.${packageSign}.framework.base.utils.BeanUtils;
@@ -62,15 +61,15 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
 
     <#if hasForm == '1'>
     @Override
-    public void save${actionName}List(List<${vo}> list, UserVOExt user) {
+    public void save${actionName}List(List<${vo}> list, String currentUserId) {
         if (list == null) {
             return;
         }
 
         List<${entity}> entities = BeanUtils.copyToNewList(list, ${entity}.class);
 
-        addList(entities, user.getId());
-        updateList(entities, user.getId());
+        addList(entities, currentUserId);
+        updateList(entities, currentUserId);
         deleteList(entities);
     }
 
@@ -118,15 +117,15 @@ public class ${serviceName} extends BaseServiceImpl implements ${interfaceName} 
     }
 
     @Override
-    public ${vo} save${actionName}(${vo} vo, UserVOExt user) {
+    public ${vo} save${actionName}(${vo} vo, String currentUserId) {
         ${entity} entity = BeanUtils.copyToNewBean(vo, ${entity}.class);
         if (StringUtils.isEmpty(vo.getId())) {
             entity.setId(null);
-            entity.setCreateUserId(user.getId());
+            entity.setCreateUserId(currentUserId);
             entity.setCreateTs(DateUtils.getCurrentDate());
         } else {
             entity.setUpdateTs(DateUtils.getCurrentDate());
-            entity.setUpdateUserId(user.getId());
+            entity.setUpdateUserId(currentUserId);
         }
         return BeanUtils.copyToNewBean(this.saveWithQuery(entity), ${vo}.class);
     }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 <#if hasForm == '1'>
 import java.util.List;
+import com.jiujie.framework.base.utils.JSONUtils;
 </#if>
 
 /**
@@ -52,12 +53,12 @@ public class ${controllerName} extends BaseController {
      * 根据条件获取记录
      *
      * @param condition 查询条件
-     * @return 响应结果
+     * @return 实体
      */
     @RequestMapping(value = "/get${actionName}ByParam.json", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseResult get${actionName}ByParam(@JsonPathParam("$.condition") ${condition} condition) {
-        return new ResponseResult(${interfaceAlias}.get${actionName}ByParam(condition));
+    public ${vo} get${actionName}ByParam(@JsonPathParam("$.condition") ${condition} condition) {
+        return ${interfaceAlias}.get${actionName}ByParam(condition);
     }
 
     /**
@@ -78,12 +79,12 @@ public class ${controllerName} extends BaseController {
      * 根据ID获取记录
      *
      * @param id 主键
-     * @return 响应结果
+     * @return 实体
      */
-    @RequestMapping(value = "/${getVoById}.json", method = RequestMethod.POST)
+    @RequestMapping("/${getVoById}.json")
     @ResponseBody
-    public ResponseResult ${getVoById}(String id) {
-        return new ResponseResult(${interfaceAlias}.${getVoById}(id));
+    public ${vo} ${getVoById}(String id) {
+        return ${interfaceAlias}.${getVoById}(id);
     }
 
     /**
@@ -95,7 +96,7 @@ public class ${controllerName} extends BaseController {
     @RequestMapping(value = "/save${actionName}.json", method = RequestMethod.POST)
     @ResponseBody
     public ResponseResult save${actionName}(@JsonPathParam("$.vo") ${vo} vo) {
-        return new ResponseResult("保存成功", ${interfaceAlias}.save${actionName}(vo, getCurrentUser()));
+        return new ResponseResult("保存成功", ${interfaceAlias}.save${actionName}(vo, getCurrentUserId()));
     }
 
     /**
@@ -107,7 +108,7 @@ public class ${controllerName} extends BaseController {
     @RequestMapping(value = "/save${actionName}List.json", method = RequestMethod.POST)
     @ResponseBody
     public ResponseResult save${actionName}List(@JsonPathParam("$.list") List<${vo}> list) {
-        ${interfaceAlias}.save${actionName}List(list, getCurrentUser());
+        ${interfaceAlias}.save${actionName}List(JSONUtils.objectToList(list, ${vo}.class), getCurrentUserId());
         return new ResponseResult("保存成功");
     }
 

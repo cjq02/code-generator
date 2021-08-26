@@ -3,9 +3,6 @@ package ${packageName};
 import com.${packageSign}.framework.exception.BusinessException;
 import com.${packageSign}.framework.mybatis.dao.pojo.Page;
 import ${voPackage};
-<#if hasForm =='1'>
-import ${packagePrefix}.sys.vo.UserVOExt;
-</#if>
 import java.util.List;
 
 /**
@@ -49,10 +46,10 @@ public interface ${interfaceName} {
      * 保存
      *
      * @param list   列表
-     * @param user 用户
+     * @param currentUserId 当前用户ID
      * @throws BusinessException 业务异常
      */
-    void save${actionName}List(List<${vo}> list, UserVOExt user) throws BusinessException;
+    void save${actionName}List(List<${vo}> list, String currentUserId) throws BusinessException;
 
     /**
      * 根据ID获取实体
@@ -67,11 +64,11 @@ public interface ${interfaceName} {
      * 保存
      *
      * @param vo 实体
-     * @param user 用户
+     * @param currentUserId 当前用户ID
      * @return 实体
      * @throws BusinessException 业务异常
      */
-    ${vo} save${actionName}(${vo} vo, UserVOExt user) throws BusinessException;
+    ${vo} save${actionName}(${vo} vo, String currentUserId) throws BusinessException;
 
      /**
      * 删除
